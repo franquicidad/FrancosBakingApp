@@ -45,6 +45,11 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
     }
 
+    public void setRecipesData(ArrayList<Recipe> recipesData){
+        mRecipeArrayListData =recipesData;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return 0;

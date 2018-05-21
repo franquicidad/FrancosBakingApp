@@ -10,6 +10,9 @@ import com.example.mac.francosbakingapp.Model.Recipe;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements MainActAdapter.RecipesAdapterOnClickHandler{
@@ -28,6 +31,26 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerViewMainRecipe.setLayoutManager(linearLayoutManager);
+
+        RetrofitBuilder.RecipesInterface recipesInterface=RetrofitBuilder.getRecipes();
+        Call<ArrayList<Recipe>> arrayListCall=recipesInterface.getRecipesListTask();
+
+        arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+                mRecipeList=response.body();
+                mainActAdapter.setRecipesData(mRecipeList);
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+
+            }
+        });
+
+
+
 
 
 
