@@ -33,6 +33,8 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
     @Override
     public MainActAdapter.RecipesAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        mContext=parent.getContext();
+
         LayoutInflater layoutInflater=LayoutInflater.from(mContext);
         int resource= R.layout.adapter_main_design;
         View view=layoutInflater.inflate(resource,parent,false);
@@ -42,6 +44,8 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
     @Override
     public void onBindViewHolder(@NonNull MainActAdapter.RecipesAdapterViewHolder holder, int position) {
+
+        holder.recipeTitle.setText(mRecipeArrayListData.get(position).getName());
 
     }
 
@@ -76,6 +80,7 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
         @Override
         public void onClick(View view) {
+
             recipesAdapterOnClickHandler.onRecipeClick(mRecipeArrayListData.get(getAdapterPosition()));
 
         }
