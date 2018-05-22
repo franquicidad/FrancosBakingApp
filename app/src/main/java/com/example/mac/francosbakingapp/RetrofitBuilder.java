@@ -19,7 +19,7 @@ public class RetrofitBuilder {
 
     public static  RecipesInterface getRecipes(){
         interfaceRecipes= new Retrofit.Builder()
-                .baseUrl("https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/")
+                .baseUrl("http://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/")
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
                 .build().create(RecipesInterface.class);

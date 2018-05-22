@@ -52,7 +52,12 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        if(mRecipeArrayListData==null){
+            return 0;
+        }else {
+            return mRecipeArrayListData.size();
+        }
     }
 
     public class RecipesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
