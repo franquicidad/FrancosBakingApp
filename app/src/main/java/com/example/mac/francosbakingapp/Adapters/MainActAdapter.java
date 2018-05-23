@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesAdapterViewHolder>{
 
     private Context mContext;
+
+    private ArrayList<Integer> arrayListImages;
     private ArrayList<Recipe> mRecipeArrayListData;
     private RecipesAdapterOnClickHandler recipesAdapterOnClickHandler;
 
@@ -47,6 +49,20 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
         holder.recipeTitle.setText(mRecipeArrayListData.get(position).getName());
 
+
+        arrayListImages=new ArrayList<>();
+        arrayListImages.add(R.drawable.nutella);
+        arrayListImages.add(R.drawable.brownie);
+        arrayListImages.add(R.drawable.yellowcake);
+        arrayListImages.add(R.drawable.cheesecake);
+
+       int imagePosition= arrayListImages.get(position);
+
+       holder.recipePhoto.setImageResource(imagePosition);
+
+
+
+
     }
 
     public void setRecipesData(ArrayList<Recipe> recipesData){
@@ -74,6 +90,9 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
             super(itemView);
             itemView.setOnClickListener(this);
             recipeTitle=itemView.findViewById(R.id.cardView_textView_recipe_name);
+
+            recipePhoto=itemView.findViewById(R.id.cardview_imageView);
+
 
         }
 
