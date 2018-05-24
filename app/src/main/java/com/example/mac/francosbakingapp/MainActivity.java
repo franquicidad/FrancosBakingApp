@@ -1,5 +1,6 @@
 package com.example.mac.francosbakingapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,6 +59,6 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     @Override
     public void onRecipeClick(Recipe recipe) {
-
+        Intent IngredientsIntent =new Intent(this,)
     }
 }
