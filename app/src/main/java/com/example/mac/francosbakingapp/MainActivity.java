@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     private ArrayList<Recipe> mRecipeList;
     private MainActAdapter mainActAdapter;
+    public static String RECIPE_KEY="recipe_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     @Override
     public void onRecipeClick(Recipe recipe) {
-        Intent IngredientsIntent =new Intent(this,)
+        Intent IngredientsIntent =new Intent(this,IngredientActivity.class);
+
+        IngredientsIntent.putExtra(RECIPE_KEY,recipe);
+        startActivity(IngredientsIntent);
     }
 }
