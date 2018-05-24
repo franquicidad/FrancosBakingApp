@@ -60,9 +60,6 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
        holder.recipePhoto.setImageResource(imagePosition);
 
-
-
-
     }
 
     public void setRecipesData(ArrayList<Recipe> recipesData){

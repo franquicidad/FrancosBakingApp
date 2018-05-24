@@ -52,10 +52,6 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         });
 
 
-
-
-
-
     }
 
     @Override

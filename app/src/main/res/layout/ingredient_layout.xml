@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/ingredient_detail_imageView"
             android:layout_width="match_parent"
-            android:layout_height="137dp"
+            android:layout_height="250dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -41,12 +41,17 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/ingredient_detail_imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="@+id/ingredient_detail_imageView"
             app:layout_constraintTop_toTopOf="@+id/ingredient_detail_imageView"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.77" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/ingredient_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
     <LinearLayout
@@ -64,6 +69,7 @@
         </android.support.v7.widget.RecyclerView>
     </ScrollView>
     </LinearLayout>
+    </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
