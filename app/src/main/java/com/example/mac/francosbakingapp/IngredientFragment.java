@@ -33,6 +33,7 @@ public class IngredientFragment extends Fragment {
         ingredientTextView=view.findViewById(R.id.ingredients);
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),3);
+        mIngredientAdapter=new IngredientAdapter();
         recyclerView.setAdapter(mIngredientAdapter);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
