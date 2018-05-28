@@ -9,14 +9,23 @@ import android.widget.ImageView;
 import android.support.v4.app.Fragment;
 import android.widget.TextView;
 
+import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
+import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class IngredientActivity extends AppCompatActivity {
 
     private static final String INGREDIENT_FRAGMENT ="ingredient_fragment" ;
     private Recipe detailRecipe;
+    private ArrayList<Ingredient> mIngredientsList;
+    private IngredientAdapter mIngredientAdapter;
 
     Recipe selectedRecipe;
     RecyclerView rv_ingred;
@@ -61,6 +70,30 @@ public class IngredientActivity extends AppCompatActivity {
                 recipe_textView_ing_act.setText(name);
                 break;
         }
+
+        Bundle ingredientsBundle=new Bundle();
+
+        RetrofitBuilder.ingredientsInterface ingredientsInterface= (RetrofitBuilder.ingredientsInterface) RetrofitBuilder.getRecipes();
+        final Call<ArrayList<Ingredient>> ingredientListTask= ingredientsInterface.getIngredientListTask();
+
+        ingredientListTask.enqueue(new Callback<ArrayList<Ingredient>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Ingredient>> call, Response<ArrayList<Ingredient>> response) {
+                mIngredientsList=response.body();
+                if(mIngredientsList !=null){
+                    mIngredientAdapter.setmIngredientList(mIngredientsList);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Ingredient>> call, Throwable t) {
+
+            }
+        });
+
+
 
         IngredientFragment ingredientFragment=new IngredientFragment();
         getSupportFragmentManager().beginTransaction()

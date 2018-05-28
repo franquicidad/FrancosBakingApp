@@ -1,5 +1,6 @@
 package com.example.mac.francosbakingapp;
 
+import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.google.gson.GsonBuilder;
 
@@ -30,5 +31,10 @@ public class RetrofitBuilder {
     public  interface RecipesInterface{
         @GET ("baking.json")
         Call<ArrayList<Recipe>> getRecipesListTask();
+    }
+
+    public interface ingredientsInterface{
+       @GET("baking.json")
+       Call<ArrayList<Ingredient>> getIngredientListTask();
     }
 }

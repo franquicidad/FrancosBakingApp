@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
 
         RecyclerView recyclerViewMainRecipe=findViewById(R.id.recyclerView_recipies);
         mainActAdapter=new MainActAdapter(this);
