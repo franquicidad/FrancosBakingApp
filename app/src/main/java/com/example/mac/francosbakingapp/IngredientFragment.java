@@ -31,6 +31,7 @@ public class IngredientFragment extends Fragment {
         View view=inflater.inflate(R.layout.ingredient_textview,container,false);
 
         ingredientTextView=view.findViewById(R.id.ingredients);
+        recyclerView=view.findViewById(R.id.rv_ingredients);
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),3);
         mIngredientAdapter=new IngredientAdapter();
