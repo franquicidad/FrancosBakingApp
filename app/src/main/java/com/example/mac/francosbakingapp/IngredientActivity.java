@@ -17,6 +17,7 @@ public class IngredientActivity extends AppCompatActivity {
 
     private static final String INGREDIENT_FRAGMENT ="ingredient_fragment" ;
     private Recipe detailRecipe;
+
     Recipe selectedRecipe;
     RecyclerView rv_ingred;
 
