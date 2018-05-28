@@ -20,7 +20,7 @@ public class IngredientFragment extends Fragment {
 
     IngredientAdapter mIngredientAdapter;
     Ingredient mIngredient;
-    private Recipe mRecipe;
+    private Recipe mRecipe=null;
     TextView ingredientTextView;
     RecyclerView recyclerView;
 
@@ -28,7 +28,7 @@ public class IngredientFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.ingredient_textview,container,false);
+        View view=inflater.inflate(R.layout.ingredient_layout,container,false);
 
         ingredientTextView=view.findViewById(R.id.ingredients);
         recyclerView=view.findViewById(R.id.rv_ingredients);
@@ -43,6 +43,6 @@ public class IngredientFragment extends Fragment {
 
 
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 }
