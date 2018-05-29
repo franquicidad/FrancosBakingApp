@@ -10,8 +10,8 @@ public class Recipe implements Parcelable{
 
     private int id;
     private String name;
-    private List<Ingredient> ingredientList=null;
-    private List<Process> processList=null;
+    private List<Ingredient> ingredients=null;
+    private List<Process> steps=null;
 
 
     public Recipe() {
@@ -33,20 +33,24 @@ public class Recipe implements Parcelable{
         this.name = name;
     }
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
-    public List<Process> getProcessList() {
-        return processList;
+    public List<Process> getSteps() {
+        return steps;
     }
 
-    public void setProcessList(List<Process> processList) {
-        this.processList = processList;
+    public void setSteps(List<Process> steps) {
+        this.steps = steps;
+    }
+
+    public static Creator<Recipe> getCREATOR() {
+        return CREATOR;
     }
 
     @Override
@@ -58,17 +62,17 @@ public class Recipe implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(this.id);
         parcel.writeString(this.name);
-        parcel.writeList(this.ingredientList);
-        parcel.writeList(this.processList);
+        parcel.writeList(this.ingredients);
+        parcel.writeList(this.steps);
     }
 
     protected Recipe(Parcel in){
         this.id = in.readInt();
         this.name = in.readString();
-        this.ingredientList = new ArrayList<>();
-        in.readList(this.ingredientList,Ingredient.class.getClassLoader());
-        this.processList = new ArrayList<>();
-        in.readList(this.processList, Process.class.getClassLoader());
+        this.ingredients = new ArrayList<>();
+        in.readList(this.ingredients,Ingredient.class.getClassLoader());
+        this.steps = new ArrayList<>();
+        in.readList(this.ingredients, Process.class.getClassLoader());
 
     }
 

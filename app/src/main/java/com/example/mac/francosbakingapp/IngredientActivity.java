@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.RetrofitBuilder.ingredientsInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,8 @@ public class IngredientActivity extends AppCompatActivity {
         int id=detailRecipe.getId();
         String name=detailRecipe.getName();
 
-        List ingredientList=detailRecipe.getIngredientList();
-        List processList=detailRecipe.getProcessList();
+        List ingredientList=detailRecipe.getIngredients();
+        List processList=detailRecipe.getSteps();
 
         switch(id){
             case 1:
@@ -73,7 +74,7 @@ public class IngredientActivity extends AppCompatActivity {
 
         Bundle ingredientsBundle=new Bundle();
 
-        RetrofitBuilder.ingredientsInterface ingredientsInterface= (RetrofitBuilder.ingredientsInterface) RetrofitBuilder.getRecipes();
+        RetrofitBuilder.ingredientsInterface ingredientsInterface=  RetrofitBuilder.getRecipes();
         final Call<ArrayList<Ingredient>> ingredientListTask= ingredientsInterface.getIngredientListTask();
 
         ingredientListTask.enqueue(new Callback<ArrayList<Ingredient>>() {
