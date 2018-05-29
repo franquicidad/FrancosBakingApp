@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
-import com.example.mac.francosbakingapp.RetrofitBuilder.ingredientsInterface;
 
 import java.util.ArrayList;
 import java.util.List;
