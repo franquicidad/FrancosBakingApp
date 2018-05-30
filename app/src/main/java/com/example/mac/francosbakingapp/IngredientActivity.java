@@ -39,10 +39,13 @@ public class IngredientActivity extends AppCompatActivity {
         detailRecipe= getIntent().getExtras().getParcelable(MainActivity.RECIPE_KEY);
 
         Bundle ingredientBundle=new Bundle();
-        ingredientBundle.putInt("ingredients", Integer.parseInt(String.valueOf(detailRecipe)));
+        ingredientBundle.putParcelable("ingredientBundle", detailRecipe);
 
         ImageView recipe_image_ing_act=findViewById(R.id.ingredient_detail_imageView);
         TextView recipe_textView_ing_act=findViewById(R.id.textView_recipe);
+
+        IngredientFragment ingredientFragment=new IngredientFragment();
+        ingredientFragment.setArguments(ingredientBundle);
 
 
         selectedRecipe=detailRecipe;
@@ -98,9 +101,9 @@ public class IngredientActivity extends AppCompatActivity {
 
 
 
-        IngredientFragment ingredientFragment=new IngredientFragment();
+        IngredientFragment ingredientFragment2=new IngredientFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
+                .add(R.id.ingredient_frameLayout,ingredientFragment2,INGREDIENT_FRAGMENT).commit();
 
 
 

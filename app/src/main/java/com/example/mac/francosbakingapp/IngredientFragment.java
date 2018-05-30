@@ -23,7 +23,15 @@ public class IngredientFragment extends Fragment {
     private Recipe mRecipe=null;
     TextView ingredientTextView;
     RecyclerView recyclerView;
+    private String Bund;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle bundle=getArguments();
+        Bund=bundle.getParcelable("ingredientBundle");
+    }
 
     @Nullable
     @Override
@@ -40,6 +48,7 @@ public class IngredientFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         mRecipe=getArguments().getParcelable(MainActivity.RECIPE_KEY);
+
 
 
 
