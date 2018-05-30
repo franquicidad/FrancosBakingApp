@@ -47,6 +47,10 @@ public class IngredientActivity extends AppCompatActivity {
         IngredientFragment ingredientFragment=new IngredientFragment();
         ingredientFragment.setArguments(ingredientBundle);
 
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
+
+
 
         selectedRecipe=detailRecipe;
 
@@ -77,33 +81,6 @@ public class IngredientActivity extends AppCompatActivity {
                 break;
         }
 
-        Bundle ingredientsBundle=new Bundle();
-
-        RetrofitBuilder.ingredientsInterface ingredientsInterface= (RetrofitBuilder.ingredientsInterface) RetrofitBuilder.getRecipes();
-        final Call<ArrayList<Ingredient>> ingredientListTask= ingredientsInterface.getIngredientListTask();
-
-        ingredientListTask.enqueue(new Callback<ArrayList<Ingredient>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Ingredient>> call, Response<ArrayList<Ingredient>> response) {
-                mIngredientsList=response.body();
-                if(mIngredientsList !=null){
-                    mIngredientAdapter.setmIngredientList(mIngredientsList);
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Ingredient>> call, Throwable t) {
-
-            }
-        });
-
-
-
-        IngredientFragment ingredientFragment2=new IngredientFragment();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.ingredient_frameLayout,ingredientFragment2,INGREDIENT_FRAGMENT).commit();
 
 
 
