@@ -13,11 +13,16 @@ import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ingredientAdapterViewHolder> {
 
     private Context mContext;
-    private ArrayList<Ingredient> mIngredientList;
+    private List<Ingredient> mIngredientList;
+
+    public IngredientAdapter(ArrayList<Ingredient> mIngredientList) {
+        this.mIngredientList = mIngredientList;
+    }
 
     @NonNull
     @Override

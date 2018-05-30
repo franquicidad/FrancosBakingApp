@@ -16,6 +16,9 @@ import com.example.mac.francosbakingapp.Model.Recipe;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IngredientFragment extends Fragment {
 
     IngredientAdapter mIngredientAdapter;
@@ -23,7 +26,8 @@ public class IngredientFragment extends Fragment {
     private Recipe mRecipe=null;
     TextView ingredientTextView;
     RecyclerView recyclerView;
-    private String Bund;
+    private String Bund= null;
+    private List<Ingredient> mArraylistIngredients;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,13 +45,19 @@ public class IngredientFragment extends Fragment {
         ingredientTextView=view.findViewById(R.id.ingredients);
         recyclerView=view.findViewById(R.id.rv_ingredients);
 
+
+        mArraylistIngredients=mRecipe.getIngredients();
+
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),3);
-        mIngredientAdapter=new IngredientAdapter();
+        mIngredientAdapter=new IngredientAdapter(mArraylistIngredients);
         recyclerView.setAdapter(mIngredientAdapter);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         mRecipe=getArguments().getParcelable(MainActivity.RECIPE_KEY);
+
+
+
 
 
 
