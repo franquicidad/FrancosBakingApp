@@ -20,7 +20,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
     private Context mContext;
     private List<Ingredient> mIngredientList;
 
-    public IngredientAdapter(ArrayList<Ingredient> mIngredientList) {
+    public IngredientAdapter(List<Ingredient> mIngredientList) {
         this.mIngredientList = mIngredientList;
     }
 
@@ -53,7 +53,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
 
     }
 
-    public void setmIngredientList(ArrayList<Ingredient> ingredientList){
+    public void setmIngredientList(List<Ingredient> ingredientList){
         mIngredientList=ingredientList;
         notifyDataSetChanged();
     }
