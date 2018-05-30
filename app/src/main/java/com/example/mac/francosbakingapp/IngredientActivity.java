@@ -38,6 +38,9 @@ public class IngredientActivity extends AppCompatActivity {
 
         detailRecipe= getIntent().getExtras().getParcelable(MainActivity.RECIPE_KEY);
 
+        Bundle ingredientBundle=new Bundle();
+        ingredientBundle.putInt("ingredients", Integer.parseInt(String.valueOf(detailRecipe)));
+
         ImageView recipe_image_ing_act=findViewById(R.id.ingredient_detail_imageView);
         TextView recipe_textView_ing_act=findViewById(R.id.textView_recipe);
 
@@ -73,7 +76,7 @@ public class IngredientActivity extends AppCompatActivity {
 
         Bundle ingredientsBundle=new Bundle();
 
-        RetrofitBuilder.ingredientsInterface ingredientsInterface=  RetrofitBuilder.getRecipes();
+        RetrofitBuilder.ingredientsInterface ingredientsInterface= (RetrofitBuilder.ingredientsInterface) RetrofitBuilder.getRecipes();
         final Call<ArrayList<Ingredient>> ingredientListTask= ingredientsInterface.getIngredientListTask();
 
         ingredientListTask.enqueue(new Callback<ArrayList<Ingredient>>() {
