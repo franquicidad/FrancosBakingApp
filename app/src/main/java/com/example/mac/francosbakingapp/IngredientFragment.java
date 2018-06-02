@@ -26,7 +26,7 @@ public class IngredientFragment extends Fragment {
     private Recipe mRecipe=null;
     TextView ingredientTextView;
     RecyclerView recyclerView;
-    private String Bund= null;
+    private String bund= null;
     private List<Ingredient> mArraylistIngredients;
 
     @Override
@@ -34,7 +34,7 @@ public class IngredientFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle bundle=getArguments();
-        Bund=bundle.getParcelable("ingredientBundle");
+        bund=bundle.getParcelable("ingredientBundle");
     }
 
     @Nullable
