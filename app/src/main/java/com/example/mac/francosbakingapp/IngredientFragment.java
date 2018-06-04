@@ -1,10 +1,12 @@
 package com.example.mac.francosbakingapp;
 
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ public class IngredientFragment extends Fragment {
     TextView ingredientTextView;
     RecyclerView recyclerView;
     private Recipe bund= null;
+
     private List<Ingredient> mArraylistIngredients;
 
     @Override
@@ -49,17 +52,28 @@ public class IngredientFragment extends Fragment {
 
 
 
-        mArraylistIngredients=mRecipe.getIngredients();
+        mArraylistIngredients=new ArrayList<>();
+
+        mIngredient=new Ingredient();
+
+        Double quantity=mIngredient.getQuantity();
+        String measure=mIngredient.getMeasure();
+        String ingredientName=mIngredient.getIngredient();
+
+        mArraylistIngredients.add(String.valueOf(quantity));
+
+
+        ingredientTextView.setText("Ingredient:"+ingredientName+ "\b"+
+                            "Measure:"+measure+ "\b"+
+                            "Quantity:"+quantity);
+
+
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),3);
         mIngredientAdapter=new IngredientAdapter(mArraylistIngredients);
         recyclerView.setAdapter(mIngredientAdapter);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
-
-
-
-
 
 
 
