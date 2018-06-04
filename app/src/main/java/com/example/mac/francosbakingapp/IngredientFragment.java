@@ -26,7 +26,7 @@ public class IngredientFragment extends Fragment {
     private Recipe mRecipe=null;
     TextView ingredientTextView;
     RecyclerView recyclerView;
-    private String bund= null;
+    private Recipe bund= null;
     private List<Ingredient> mArraylistIngredients;
 
     @Override
@@ -45,6 +45,9 @@ public class IngredientFragment extends Fragment {
         ingredientTextView=view.findViewById(R.id.ingredients);
         recyclerView=view.findViewById(R.id.rv_ingredients);
 
+        mRecipe=getArguments().getParcelable(MainActivity.RECIPE_KEY);
+
+
 
         mArraylistIngredients=mRecipe.getIngredients();
 
@@ -54,7 +57,6 @@ public class IngredientFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        mRecipe=getArguments().getParcelable(MainActivity.RECIPE_KEY);
 
 
 
