@@ -18,9 +18,9 @@ import java.util.List;
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ingredientAdapterViewHolder> {
 
     private Context mContext;
-    private List<Ingredient> mIngredientList;
+    private List<String> mIngredientList;
 
-    public IngredientAdapter(List<Ingredient> mIngredientList) {
+    public IngredientAdapter(List<String> mIngredientList) {
         this.mIngredientList = mIngredientList;
     }
 
@@ -53,7 +53,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
 
     }
 
-    public void setmIngredientList(List<Ingredient> ingredientList){
+    public void setmIngredientList(List<String> ingredientList){
         mIngredientList=ingredientList;
         notifyDataSetChanged();
     }

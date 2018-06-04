@@ -30,7 +30,7 @@ public class IngredientFragment extends Fragment {
     RecyclerView recyclerView;
     private Recipe bund= null;
 
-    private List<Ingredient> mArraylistIngredients;
+    private List<String> mArraylistIngredients;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public class IngredientFragment extends Fragment {
         String ingredientName=mIngredient.getIngredient();
 
         mArraylistIngredients.add(String.valueOf(quantity));
+        mArraylistIngredients.add(measure);
+        mArraylistIngredients.add(ingredientName);
 
 
         ingredientTextView.setText("Ingredient:"+ingredientName+ "\b"+
