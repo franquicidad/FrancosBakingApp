@@ -47,10 +47,7 @@ public class IngredientFragment extends Fragment {
 
         recyclerView=view.findViewById(R.id.rv_ingredients);
 
-        mRecipe=getArguments().getParcelable(MainActivity.RECIPE_KEY);
-
-
-
+        mRecipe=getArguments().getParcelable("ingredientBundle");
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),3);
         mIngredientAdapter=new IngredientAdapter(mArraylistIngredients);
