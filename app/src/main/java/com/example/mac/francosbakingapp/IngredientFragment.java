@@ -30,7 +30,7 @@ public class IngredientFragment extends Fragment {
     RecyclerView recyclerView;
     private Recipe bund= null;
 
-    private List<String> mArraylistIngredients;
+    private List<Ingredient> mArraylistIngredients;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,29 +45,10 @@ public class IngredientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.ingredient_layout,container,false);
 
-        ingredientTextView=view.findViewById(R.id.ingredients);
         recyclerView=view.findViewById(R.id.rv_ingredients);
 
         mRecipe=getArguments().getParcelable(MainActivity.RECIPE_KEY);
 
-
-
-        mArraylistIngredients=new ArrayList<>();
-
-        mIngredient=new Ingredient();
-
-        Double quantity=mIngredient.getQuantity();
-        String measure=mIngredient.getMeasure();
-        String ingredientName=mIngredient.getIngredient();
-
-        mArraylistIngredients.add(String.valueOf(quantity));
-        mArraylistIngredients.add(measure);
-        mArraylistIngredients.add(ingredientName);
-
-
-        ingredientTextView.setText("Ingredient:"+ingredientName+ "\b"+
-                            "Measure:"+measure+ "\b"+
-                            "Quantity:"+quantity);
 
 
 
