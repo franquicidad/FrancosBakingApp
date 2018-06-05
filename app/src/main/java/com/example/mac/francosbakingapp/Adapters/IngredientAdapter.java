@@ -45,7 +45,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
 
     public class ingredientAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ing_name, ing_quantity, ing_measure;
+        TextView ing_name, ing_quantity, ing_measure,ing_whatever;
         private List<Ingredient> mIngredientList;
 
         public ingredientAdapterViewHolder(View itemView) {
@@ -65,6 +65,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
         holder.ing_quantity.setText(String.valueOf(ingObject.getQuantity()));
         String measure_ori = ingObject.getMeasure().toLowerCase();
         holder.ing_measure.setText(String.format("%s%s", Character.toUpperCase(measure_ori.charAt(0)), measure_ori.substring(1)));
+
     }
 
 
