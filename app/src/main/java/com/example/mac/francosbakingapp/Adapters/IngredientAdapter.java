@@ -45,7 +45,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
 
     public class ingredientAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ing_name, ing_quantity, ing_measure,ing_whatever;
+        TextView ing_name, ing_quantity, ing_measure;
         private List<Ingredient> mIngredientList;
 
         public ingredientAdapterViewHolder(View itemView) {
