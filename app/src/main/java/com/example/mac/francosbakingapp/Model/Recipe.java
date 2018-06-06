@@ -72,7 +72,7 @@ public class Recipe implements Parcelable{
         this.ingredients = new ArrayList<>();
         in.readList(this.ingredients,Ingredient.class.getClassLoader());
         this.steps = new ArrayList<>();
-        in.readList(this.ingredients, Process.class.getClassLoader());
+        in.readList(this.steps, Process.class.getClassLoader());
 
     }
 

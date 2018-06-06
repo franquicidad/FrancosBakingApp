@@ -43,13 +43,15 @@ public class IngredientFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.ingredient_layout,container,false);
+        View view=inflater.inflate(R.layout.fragment_layout,container,false);
 
         recyclerView=view.findViewById(R.id.rv_ingredients);
 
         mRecipe=getArguments().getParcelable("ingredientBundle");
 
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),3);
+        mArraylistIngredients=mRecipe.getIngredients();
+
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),2);
         mIngredientAdapter=new IngredientAdapter(mArraylistIngredients);
         recyclerView.setAdapter(mIngredientAdapter);
         recyclerView.setLayoutManager(gridLayoutManager);
