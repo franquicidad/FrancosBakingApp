@@ -36,8 +36,7 @@ public class IngredientFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle bundle=getArguments();
-        bund=bundle.getParcelable("ingredientBundle");
+
     }
 
     @Nullable

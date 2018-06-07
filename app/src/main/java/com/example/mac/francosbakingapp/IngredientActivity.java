@@ -25,6 +25,7 @@ public class IngredientActivity extends AppCompatActivity {
     private static final String INGREDIENT_FRAGMENT ="ingredient_fragment" ;
     private Recipe detailRecipe;
     private ArrayList<Ingredient> mIngredientsList;
+    private ArrayList<Process> mProcessList;
     private IngredientAdapter mIngredientAdapter;
 
     Recipe selectedRecipe;
@@ -57,8 +58,7 @@ public class IngredientActivity extends AppCompatActivity {
         int id=detailRecipe.getId();
         String name=detailRecipe.getName();
 
-        List ingredientList=detailRecipe.getIngredients();
-        List processList=detailRecipe.getSteps();
+
 
         switch(id){
             case 1:
@@ -80,20 +80,5 @@ public class IngredientActivity extends AppCompatActivity {
                 recipe_textView_ing_act.setText(name);
                 break;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

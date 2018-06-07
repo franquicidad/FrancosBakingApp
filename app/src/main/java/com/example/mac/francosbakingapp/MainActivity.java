@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     @Override
     public void onRecipeClick(Recipe recipe) {
+
         Intent IngredientsIntent =new Intent(this,IngredientActivity.class);
 
         IngredientsIntent.putExtra(RECIPE_KEY,recipe);

@@ -27,6 +27,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
         this.mIngredientList = mIngredientList;
     }
 
+
+
     @NonNull
     @Override
     public IngredientAdapter.ingredientAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
