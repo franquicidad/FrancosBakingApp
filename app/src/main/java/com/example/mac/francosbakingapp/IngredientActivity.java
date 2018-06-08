@@ -23,6 +23,7 @@ import retrofit2.Response;
 public class IngredientActivity extends AppCompatActivity {
 
     private static final String INGREDIENT_FRAGMENT ="ingredient_fragment" ;
+    private static final String PROCESS_FRAGMENT="process_fragment";
     private Recipe detailRecipe;
     private ArrayList<Ingredient> mIngredientsList;
     private ArrayList<Process> mProcessList;
@@ -50,6 +51,11 @@ public class IngredientActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
+
+        ProcessFragment processFragment=new ProcessFragment();
+        processFragment.setArguments(ingredientBundle);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.framelayout_steps,processFragment,PROCESS_FRAGMENT);
 
 
 
