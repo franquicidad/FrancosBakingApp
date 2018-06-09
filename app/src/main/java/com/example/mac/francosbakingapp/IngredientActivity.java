@@ -55,7 +55,7 @@ public class IngredientActivity extends AppCompatActivity {
         ProcessFragment processFragment=new ProcessFragment();
         processFragment.setArguments(ingredientBundle);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.framelayout_steps,processFragment,PROCESS_FRAGMENT);
+        getSupportFragmentManager().beginTransaction().add(R.id.framelayout_steps,processFragment,PROCESS_FRAGMENT).commit();
 
 
 
