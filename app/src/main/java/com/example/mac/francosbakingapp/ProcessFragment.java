@@ -1,6 +1,7 @@
 package com.example.mac.francosbakingapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     private static final String TAG ="logtag" ;
     ProcessAdapter mProcessAdapter;
     private Recipe mRecipe;
+    public static final String RECIPE_EXTRA="recipe_extra";
     RecyclerView processRecyclerview;
     Context mContext;
 
@@ -33,7 +35,7 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=LayoutInflater.from(mContext).inflate(R.layout.process_fragment_layout,container,false);
+        View view=inflater.inflate(R.layout.process_fragment_layout,container,false);
 
         processRecyclerview=view.findViewById(R.id.rv_process);
 
@@ -58,6 +60,11 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
      */
     @Override
     public void onProcessClicked(Process process) {
+        Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
+        stepActivityInt.putExtra(RECIPE_EXTRA,process);
+        startActivity(stepActivityInt);
 
     }
+
+
 }

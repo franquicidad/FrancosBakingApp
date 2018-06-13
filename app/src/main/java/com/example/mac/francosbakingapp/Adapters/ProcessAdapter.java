@@ -75,7 +75,7 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.ProcessA
 
         Process procObject=mProcessList.get(position);
         holder.process_tv.setText(procObject.getShortDescription());
-        holder.process_recipe_step.setText(procObject.getId());
+        holder.process_recipe_step.setText(String.valueOf(procObject.getId()));
 
 
     }

@@ -23,6 +23,11 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
+        <activity android:name=".StepsActivity"
+            android:label="Recipe Step Preparation"
+            android:parentActivityName=".IngredientActivity">
+
+        </activity>
     </application>
 
 </manifest>
