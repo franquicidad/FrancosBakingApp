@@ -25,6 +25,7 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     ProcessAdapter mProcessAdapter;
     private Recipe mRecipe;
     public static final String RECIPE_EXTRA="recipe_extra";
+    public static final String PROCESS_EXTRA="process_extra";
     RecyclerView processRecyclerview;
     Context mContext;
 
@@ -53,15 +54,15 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
         return view;
     }
 
-
     /**
      * Here you set the click to go to the other layout the recipe details steps
      * @param process
      */
     @Override
     public void onProcessClicked(Process process) {
+
         Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
-        stepActivityInt.putExtra(RECIPE_EXTRA,process);
+        stepActivityInt.putExtra(PROCESS_EXTRA,process);
         startActivity(stepActivityInt);
 
     }
