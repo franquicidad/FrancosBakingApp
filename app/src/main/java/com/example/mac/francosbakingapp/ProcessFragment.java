@@ -41,7 +41,6 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
         processRecyclerview=view.findViewById(R.id.rv_process);
 
         mRecipe=getArguments().getParcelable("ingredientBundle");
-        Log.i(TAG,"mREeeeeecipe:-------->>>>>>>>>>>>"+mRecipe);
 
         mArrayListProcess=mRecipe.getSteps();
 
