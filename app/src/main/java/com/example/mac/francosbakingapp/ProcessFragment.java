@@ -17,6 +17,7 @@ import com.example.mac.francosbakingapp.Adapters.ProcessAdapter;
 import com.example.mac.francosbakingapp.Model.Process;
 import com.example.mac.francosbakingapp.Model.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessFragment extends Fragment implements ProcessAdapter.onProcessAdapterClickHandler{
@@ -43,6 +44,11 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
         mRecipe=getArguments().getParcelable("ingredientBundle");
 
         mArrayListProcess=mRecipe.getSteps();
+
+        mArrayListProcess=new ArrayList<Process>(mArrayListProcess);
+
+        Bundle bundle1=new Bundle();
+        bundle1.putParcelableArrayList("stepsList",mArrayListProcess);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         mProcessAdapter=new ProcessAdapter(mArrayListProcess,this);

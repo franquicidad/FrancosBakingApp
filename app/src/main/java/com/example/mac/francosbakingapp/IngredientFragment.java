@@ -50,6 +50,8 @@ public class IngredientFragment extends Fragment {
 
         mArraylistIngredients=mRecipe.getIngredients();
 
+
+
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),2);
         mIngredientAdapter=new IngredientAdapter(mArraylistIngredients);
         recyclerView.setAdapter(mIngredientAdapter);
