@@ -31,8 +31,15 @@ public class StepsActivity extends AppCompatActivity {
         next=findViewById(R.id.next_button);
         previous=findViewById(R.id.previous_button);
 
+        Bundle steps=new Bundle();
+
+        mProcess=getIntent().getExtras().get
+
+
+
 
         DescriptionFragment descriptionFragment=new DescriptionFragment();
+        descriptionFragment.setArguments(steps);
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.description_container,descriptionFragment,DESCRIPTION_FRAGMENT).commit();

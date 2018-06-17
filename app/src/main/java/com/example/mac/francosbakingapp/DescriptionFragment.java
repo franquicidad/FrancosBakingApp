@@ -38,9 +38,9 @@ public class DescriptionFragment extends Fragment {
 
 
         positionBund=new Bundle();
+
         positionBund.getInt(ProcessFragment.PROCESS_POSITION);
 
-        mProcessList.get(positionBund);
 
 
 

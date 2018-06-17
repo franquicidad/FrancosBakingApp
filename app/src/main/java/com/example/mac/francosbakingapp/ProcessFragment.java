@@ -75,10 +75,15 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
 
         Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
         stepActivityInt.putExtra(PROCESS_EXTRA,process);
+        stepActivityInt.putExtra(PROCESS_POSITION,position);
         startActivity(stepActivityInt);
 
-        Bundle pos=new Bundle();
-        pos.putInt(PROCESS_POSITION,position);
+        //Bundle pos=new Bundle(); This is for tablet
+
+
+//        pos.putInt(PROCESS_POSITION,position);
+//        DescriptionFragment descriptionFragment=new DescriptionFragment();
+//        descriptionFragment.setArguments(pos);
 
     }
 
