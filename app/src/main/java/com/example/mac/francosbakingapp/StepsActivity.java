@@ -34,7 +34,11 @@ public class StepsActivity extends AppCompatActivity {
         processPosition=getIntent().getExtras().getInt(ProcessFragment.PROCESS_POSITION);
 
         Bundle stepsBundle=new Bundle();
-        stepsBundle.putParcelableArrayList(mArraylistProcess);
+        stepsBundle.putParcelableArrayList("ArrayList",mArraylistProcess);
+        stepsBundle.putInt("process_position",processPosition);
+
+        DescriptionFragment descriptionFragment=new DescriptionFragment();
+        descriptionFragment.setArguments(stepsBundle);
 
 
 
@@ -43,14 +47,10 @@ public class StepsActivity extends AppCompatActivity {
         next=findViewById(R.id.next_button);
         previous=findViewById(R.id.previous_button);
 
-        Bundle steps=new Bundle();
 
 
 
 
-
-        DescriptionFragment descriptionFragment=new DescriptionFragment();
-        descriptionFragment.setArguments(steps);
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.description_container,descriptionFragment,DESCRIPTION_FRAGMENT).commit();
