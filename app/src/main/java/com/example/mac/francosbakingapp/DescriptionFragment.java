@@ -45,16 +45,18 @@ public class DescriptionFragment extends Fragment {
 
         position=getArguments().getInt("process_position");
 
+        mProcess=mProcessList.get(position);
+        String Description =mProcess.getDescription();
+
+
+
 
 
 
         //Process selectedProcess=mProcessList.get(position)
 
 
-        int id =mProcess.getId();
-        String shortDescription=mProcess.getShortDescription();
-        String Description=mProcess.getDescription();
-        String video=mProcess.getVideoURL();
+
 
         descriptionTextview.setText(Description);
 
