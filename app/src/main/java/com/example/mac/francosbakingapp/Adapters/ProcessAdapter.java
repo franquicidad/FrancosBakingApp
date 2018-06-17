@@ -66,7 +66,7 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.ProcessA
 
         @Override
         public void onClick(View view) {
-            mProcessClickHandler.onProcessClicked(mProcessList.get(getAdapterPosition()));
+            mProcessClickHandler.onProcessClicked(mProcessList.get(getAdapterPosition()) ,getAdapterPosition());
         }
     }
 
