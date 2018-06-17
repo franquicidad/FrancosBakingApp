@@ -22,6 +22,8 @@ public class DescriptionFragment extends Fragment {
     Process mProcess;
     TextView descriptionTextview;
     Bundle positionBund;
+
+    int position;
     Button previousB, nextB;
 
 
@@ -37,17 +39,11 @@ public class DescriptionFragment extends Fragment {
         previousB=view.findViewById(R.id.previous_button);
         nextB=view.findViewById(R.id.next_button);
 
-        Bundle proccFrag=new Bundle();
 
 
+        mProcessList=getArguments().getParcelableArrayList("ArrayList");
 
-        mProcessList=getArguments().getParcelableArrayList("stepsList");
-
-
-
-        positionBund=new Bundle();
-
-        positionBund.getInt(ProcessFragment.PROCESS_POSITION);
+        position=getArguments().getInt("process_position");
 
 
 
