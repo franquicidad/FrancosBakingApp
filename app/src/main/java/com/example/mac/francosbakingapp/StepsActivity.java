@@ -10,19 +10,31 @@ import android.widget.TextView;
 import com.example.mac.francosbakingapp.Model.Process;
 import com.example.mac.francosbakingapp.Model.Recipe;
 
+import java.util.ArrayList;
+
 public class StepsActivity extends AppCompatActivity {
 
     private static final String DESCRIPTION_FRAGMENT="description_fragment";
 
     Process mProcess;
+
+    ArrayList<Process> mArraylistProcess;
     TextView stepName,stepDescription;
     Button next,previous;
     private int idCount;
+    private int processPosition;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onclick_steps);
+
+        mArraylistProcess=getIntent().getExtras().getParcelableArrayList(ProcessFragment.PROCESS_EXTRA);
+
+        processPosition=getIntent().getExtras().getInt(ProcessFragment.PROCESS_POSITION);
+
+        Bundle stepsBundle=new Bundle();
+        stepsBundle.putParcelableArrayList(mArraylistProcess);
 
 
 

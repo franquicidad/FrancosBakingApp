@@ -68,13 +68,16 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
 
     /**
      * Here you set the click to go to the other layout the recipe details steps
-     * @param process
+     * @param
      */
     @Override
     public void onProcessClicked(List<Process> processes, int position) {
 
         Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
-        stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA,processes);
+
+        ArrayList<Process> processes1=new ArrayList<>(mArrayListProcess);
+
+        stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA,processes1);
         stepActivityInt.putExtra(PROCESS_POSITION,position);
         startActivity(stepActivityInt);
 
