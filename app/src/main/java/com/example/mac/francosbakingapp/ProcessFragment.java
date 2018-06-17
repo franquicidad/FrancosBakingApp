@@ -77,8 +77,8 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
         stepActivityInt.putExtra(PROCESS_EXTRA,process);
         startActivity(stepActivityInt);
 
-        Bundle positionBund=new Bundle();
-        positionBund.putInt(PROCESS_POSITION,position);
+        Bundle pos=new Bundle();
+        pos.putInt(PROCESS_POSITION,position);
 
     }
 

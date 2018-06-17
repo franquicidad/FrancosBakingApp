@@ -20,6 +20,7 @@ public class DescriptionFragment extends Fragment {
     private Context context;
     Process mProcess;
     TextView descriptionTextview;
+    Bundle positionBund;
 
     private ArrayList<Process> mProcessList;
 
@@ -34,8 +35,12 @@ public class DescriptionFragment extends Fragment {
 
         mProcessList=getArguments().getParcelableArrayList("stepsList");
 
-        Bundle positionBund=new Bundle();
+
+
+        positionBund=new Bundle();
         positionBund.getInt(ProcessFragment.PROCESS_POSITION);
+
+        mProcessList.get(positionBund);
 
 
 

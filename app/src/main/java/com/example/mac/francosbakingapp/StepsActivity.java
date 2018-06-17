@@ -35,7 +35,7 @@ public class StepsActivity extends AppCompatActivity {
         DescriptionFragment descriptionFragment=new DescriptionFragment();
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.step_description,descriptionFragment,DESCRIPTION_FRAGMENT).commit();
+                .add(R.id.description_container,descriptionFragment,DESCRIPTION_FRAGMENT).commit();
 
 
 
