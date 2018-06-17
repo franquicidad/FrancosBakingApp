@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mac.francosbakingapp.Model.Process;
@@ -21,6 +22,8 @@ public class DescriptionFragment extends Fragment {
     Process mProcess;
     TextView descriptionTextview;
     Bundle positionBund;
+    Button previousB, nextB;
+
 
     private ArrayList<Process> mProcessList;
 
@@ -31,6 +34,11 @@ public class DescriptionFragment extends Fragment {
         View view=inflater.inflate(R.layout.frame_layout,container,false);
 
         descriptionTextview=view.findViewById(R.id.description_textview);
+        previousB=view.findViewById(R.id.previous_button);
+        nextB=view.findViewById(R.id.next_button);
+
+        Bundle proccFrag=new Bundle();
+
 
 
         mProcessList=getArguments().getParcelableArrayList("stepsList");

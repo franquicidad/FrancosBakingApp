@@ -33,7 +33,6 @@ public class StepsActivity extends AppCompatActivity {
 
         Bundle steps=new Bundle();
 
-        mProcess=getIntent().getExtras().get
 
 
 

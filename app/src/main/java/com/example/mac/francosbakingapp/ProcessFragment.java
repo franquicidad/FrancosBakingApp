@@ -71,10 +71,10 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
      * @param process
      */
     @Override
-    public void onProcessClicked(Process process, int position) {
+    public void onProcessClicked(List<Process> processes, int position) {
 
         Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
-        stepActivityInt.putExtra(PROCESS_EXTRA,process);
+        stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA,processes);
         stepActivityInt.putExtra(PROCESS_POSITION,position);
         startActivity(stepActivityInt);
 
