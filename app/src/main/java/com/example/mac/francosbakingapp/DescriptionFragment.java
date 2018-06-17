@@ -34,7 +34,12 @@ public class DescriptionFragment extends Fragment {
 
         mProcessList=getArguments().getParcelableArrayList("stepsList");
 
-        Process selectedProcess=mProcessList.get(position)
+        Bundle positionBund=new Bundle();
+        positionBund.getInt(ProcessFragment.PROCESS_POSITION);
+
+
+
+        //Process selectedProcess=mProcessList.get(position)
 
 
         int id =mProcess.getId();
