@@ -27,6 +27,7 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     private Recipe mRecipe;
     public static final String RECIPE_EXTRA="recipe_extra";
     public static final String PROCESS_EXTRA="process_extra";
+    public static final String PROCESS_POSITION="process_position";
     RecyclerView processRecyclerview;
     Context mContext;
 
@@ -48,7 +49,13 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
         mArrayListProcess=new ArrayList<Process>(mArrayListProcess);
 
         Bundle bundle1=new Bundle();
-        bundle1.putParcelableArrayList("stepsList",mArrayListProcess);
+
+
+// Get an ArrayList from a List
+        ArrayList<Process> processes = new ArrayList<>(mArrayListProcess);
+
+// Put the ArrayList in the Bundle
+        bundle1.putParcelableArrayList("stepsList", processes);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         mProcessAdapter=new ProcessAdapter(mArrayListProcess,this);
@@ -64,10 +71,11 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
      * @param process
      */
     @Override
-    public void onProcessClicked(Process process) {
+    public void onProcessClicked(Process process, int position) {
 
         Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
         stepActivityInt.putExtra(PROCESS_EXTRA,process);
+        stepActivityInt.putExtra(PROCESS_POSITION,position);
         startActivity(stepActivityInt);
 
     }

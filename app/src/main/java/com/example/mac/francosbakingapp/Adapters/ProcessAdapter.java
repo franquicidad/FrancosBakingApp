@@ -22,7 +22,7 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.ProcessA
 
 
     public interface onProcessAdapterClickHandler{
-        void onProcessClicked(Process process);
+        void onProcessClicked(Process process,int position);
     }
 
     public ProcessAdapter(List<Process> mProcessList, onProcessAdapterClickHandler mProcessClickHandler) {

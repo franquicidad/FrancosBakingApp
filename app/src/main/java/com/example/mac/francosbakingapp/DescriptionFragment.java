@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.mac.francosbakingapp.Model.Process;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DescriptionFragment extends Fragment {
@@ -20,7 +21,7 @@ public class DescriptionFragment extends Fragment {
     Process mProcess;
     TextView descriptionTextview;
 
-    private List<Process> mProcessList;
+    private ArrayList<Process> mProcessList;
 
     @Nullable
     @Override
@@ -29,6 +30,11 @@ public class DescriptionFragment extends Fragment {
         View view=inflater.inflate(R.layout.frame_layout,container,false);
 
         descriptionTextview=view.findViewById(R.id.description_textview);
+
+
+        mProcessList=getArguments().getParcelableArrayList("stepsList");
+
+        Process selectedProcess=mProcessList.get(position)
 
 
         int id =mProcess.getId();
