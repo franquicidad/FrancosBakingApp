@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mac.francosbakingapp.Model.Process;
 
@@ -39,26 +40,27 @@ public class DescriptionFragment extends Fragment {
         previousB=view.findViewById(R.id.previous_button);
         nextB=view.findViewById(R.id.next_button);
 
-
-
         mProcessList=getArguments().getParcelableArrayList("ArrayList");
 
         position=getArguments().getInt("process_position");
 
         mProcess=mProcessList.get(position);
         String Description =mProcess.getDescription();
-
-
-
-
-
-
-        //Process selectedProcess=mProcessList.get(position)
-
-
-
-
         descriptionTextview.setText(Description);
+
+        previousB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(position == 0) {
+                    Toast.makeText(getContext(),"You are in the first step of this recipe",Toast.LENGTH_LONG).show();
+                }else{
+                    mProcess = mProcessList.get((position) - 1);
+                    String Description=mProcess.getDescription();
+                    descriptionTextview.setText(Description);
+                }
+
+            }
+        });
 
 
 

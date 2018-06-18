@@ -48,10 +48,6 @@ public class StepsActivity extends AppCompatActivity {
         previous=findViewById(R.id.previous_button);
 
 
-
-
-
-
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.description_container,descriptionFragment,DESCRIPTION_FRAGMENT).commit();
 
