@@ -69,7 +69,7 @@ public class DescriptionFragment extends Fragment {
                 if(position >= mProcessList.size()) {
                     Toast.makeText(getContext(),"You are in the Last step of this recipe",Toast.LENGTH_LONG).show();
                 }else{
-                    position++;
+                    mProcess=mProcessList.get(position++);
                         String Description = mProcess.getDescription();
                         descriptionTextview.setText(Description);
 
