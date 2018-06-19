@@ -45,7 +45,7 @@ public class DescriptionFragment extends Fragment {
         position=getArguments().getInt("process_position");
 
         mProcess=mProcessList.get(position);
-        String Description =mProcess.getDescription();
+        final String Description =mProcess.getDescription();
         descriptionTextview.setText(Description);
 
         previousB.setOnClickListener(new View.OnClickListener() {
@@ -54,10 +54,26 @@ public class DescriptionFragment extends Fragment {
                 if(position == 0) {
                     Toast.makeText(getContext(),"You are in the first step of this recipe",Toast.LENGTH_LONG).show();
                 }else{
-                    mProcess = mProcessList.get((position) - 1);
+                    mProcess = mProcessList.get((position--) );
                     String Description=mProcess.getDescription();
                     descriptionTextview.setText(Description);
                 }
+
+            }
+        });
+
+        nextB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(Description == null) {
+                    Toast.makeText(getContext(),"You are in the Last step of this recipe",Toast.LENGTH_LONG).show();
+                }else{
+                    mProcess = mProcessList.get((position++) );
+                    String Description=mProcess.getDescription();
+                    descriptionTextview.setText(Description);
+                }
+
 
             }
         });
