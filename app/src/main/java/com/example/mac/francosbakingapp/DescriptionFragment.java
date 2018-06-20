@@ -61,7 +61,9 @@ public class DescriptionFragment extends Fragment {
                 }else{
                     mProcess = mProcessList.get(position);
                     String Description=mProcess.getDescription();
+                    String shortDes=mProcess.getShortDescription();
                     descriptionTextview.setText(Description);
+                    nameStep.setText(shortDes);
                 }
 
             }
@@ -78,6 +80,8 @@ public class DescriptionFragment extends Fragment {
                 }else{
                     mProcess=mProcessList.get(position);
                         String Description = mProcess.getDescription();
+                        String shortDesAdd=mProcess.getShortDescription();
+                        nameStep.setText(shortDesAdd);
                         descriptionTextview.setText(Description);
 
                 }
