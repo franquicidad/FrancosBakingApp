@@ -55,7 +55,9 @@ public class DescriptionFragment extends Fragment {
         previousB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                position--;
+                if(position>1){
+                    position--;
+                }
                 if(position <0){
                     return;
                 }
