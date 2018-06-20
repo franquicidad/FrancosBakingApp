@@ -56,14 +56,19 @@ public class DescriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 position--;
-                if(position == 0) {
-                    Toast.makeText(getContext(),"You are in the first step of this recipe",Toast.LENGTH_LONG).show();
-                }else{
+                if(position <0){
+                    return;
+                }
+                if(position >= 0) {
                     mProcess = mProcessList.get(position);
                     String Description=mProcess.getDescription();
                     String shortDes=mProcess.getShortDescription();
                     descriptionTextview.setText(Description);
                     nameStep.setText(shortDes);
+
+                }else{
+
+                    Toast.makeText(getContext(),"You are in the first step of this recipe",Toast.LENGTH_LONG).show();
                 }
 
             }
