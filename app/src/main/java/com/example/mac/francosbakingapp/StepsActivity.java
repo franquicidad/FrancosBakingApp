@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.mac.francosbakingapp.Model.Process;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,8 @@ public class StepsActivity extends AppCompatActivity {
     Button next,previous;
     private int idCount;
     private int processPosition;
+    private SimpleExoPlayer mExoPlayer;
+    private SimpleExoPlayerView mPlayerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

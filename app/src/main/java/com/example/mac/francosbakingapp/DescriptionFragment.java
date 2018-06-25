@@ -58,9 +58,7 @@ public class DescriptionFragment extends Fragment {
                 if(position>1){
                     position--;
                 }
-                if(position <0){
-                    return;
-                }
+
                 if(position >= 0) {
                     mProcess = mProcessList.get(position);
                     String Description=mProcess.getDescription();
@@ -70,7 +68,10 @@ public class DescriptionFragment extends Fragment {
 
                 }else{
 
-                    Toast.makeText(getContext(),"You are in the first step of this recipe",Toast.LENGTH_LONG).show();
+                    if(position==0) {
+
+                        Toast.makeText(getContext(), "You are in the first step of this recipe", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
