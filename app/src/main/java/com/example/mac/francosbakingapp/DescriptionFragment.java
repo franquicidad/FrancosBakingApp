@@ -20,12 +20,15 @@ import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,23 +60,23 @@ public class DescriptionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.frame_layout,container,false);
+        View view = inflater.inflate(R.layout.frame_layout, container, false);
 
-        descriptionTextview=view.findViewById(R.id.description_textview);
-        previousB=view.findViewById(R.id.previous_button);
-        nextB=view.findViewById(R.id.next_button);
-        nameStep=view.findViewById(R.id.step_name);
-        playerView=view.findViewById(R.id.exoplayer_view);
+        descriptionTextview = view.findViewById(R.id.description_textview);
+        previousB = view.findViewById(R.id.previous_button);
+        nextB = view.findViewById(R.id.next_button);
+        nameStep = view.findViewById(R.id.step_name);
+        playerView = view.findViewById(R.id.exoplayer_view);
 
 
-        mProcessList=getArguments().getParcelableArrayList("ArrayList");
+        mProcessList = getArguments().getParcelableArrayList("ArrayList");
 
-        position=getArguments().getInt("process_position");
+        position = getArguments().getInt("process_position");
 
-        mProcess=mProcessList.get(position);
-        final String Description =mProcess.getDescription();
-        final String nameDes=mProcess.getShortDescription();
-        mVideoUrl=mProcess.getVideoURL();
+        mProcess = mProcessList.get(position);
+        final String Description = mProcess.getDescription();
+        final String nameDes = mProcess.getShortDescription();
+        mVideoUrl = mProcess.getVideoURL();
 
         nameStep.setText(nameDes);
         descriptionTextview.setText(Description);
@@ -81,20 +84,20 @@ public class DescriptionFragment extends Fragment {
         previousB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(position>1){
+                if (position > 1) {
                     position--;
                 }
 
-                if(position >= 0) {
+                if (position >= 0) {
                     mProcess = mProcessList.get(position);
-                    String Description=mProcess.getDescription();
-                    String shortDes=mProcess.getShortDescription();
+                    String Description = mProcess.getDescription();
+                    String shortDes = mProcess.getShortDescription();
                     descriptionTextview.setText(Description);
                     nameStep.setText(shortDes);
 
-                }else{
+                } else {
 
-                    if(position==0) {
+                    if (position == 0) {
 
                         Toast.makeText(getContext(), "You are in the first step of this recipe", Toast.LENGTH_LONG).show();
                     }
@@ -109,14 +112,14 @@ public class DescriptionFragment extends Fragment {
 
                 position++;
 
-                if(position >= mProcessList.size()) {
-                    Toast.makeText(getContext(),"You are in the Last step of this recipe",Toast.LENGTH_LONG).show();
-                }else{
-                    mProcess=mProcessList.get(position);
-                        String Description = mProcess.getDescription();
-                        String shortDesAdd=mProcess.getShortDescription();
-                        nameStep.setText(shortDesAdd);
-                        descriptionTextview.setText(Description);
+                if (position >= mProcessList.size()) {
+                    Toast.makeText(getContext(), "You are in the Last step of this recipe", Toast.LENGTH_LONG).show();
+                } else {
+                    mProcess = mProcessList.get(position);
+                    String Description = mProcess.getDescription();
+                    String shortDesAdd = mProcess.getShortDescription();
+                    nameStep.setText(shortDesAdd);
+                    descriptionTextview.setText(Description);
 
                 }
 
@@ -125,27 +128,39 @@ public class DescriptionFragment extends Fragment {
         });
 
 
-
-
         return view;
     }
 
 
-    private void initializaPlayer(){
-         player= ExoPlayerFactory.newSimpleInstance(new DefaultRenderersFactory(getContext()),
+    private void initializePlayer(Uri mediaUri) {
+        player = ExoPlayerFactory.newSimpleInstance(new DefaultRenderersFactory(getContext()),
                 new DefaultTrackSelector(),
                 new DefaultLoadControl());
 
         playerView.setPlayer(player);
         player.setPlayWhenReady(playWhenReady);
-        player.seekTo(startWindow,playbackPosition);
+        player.seekTo(startWindow, playbackPosition);
+
+        String userAgent = Util.getUserAgent(getContext(), "bakingapp-exoplayer");
 
 
-        Uri uri=Uri.parse(mVideoUrl);
-        MediaSource mediaSource=buildMediaSource(uri);
+        Uri uri = Uri.parse(mVideoUrl);
+        MediaSource mediaSource =new ExtractorMediaSource(mediaUri,new DefaultDataSourceFactory(getContext(),userAgent),
+                new DefaultExtractorsFactory(),null,null);
+
+        player.prepare(mediaSource);
+        player.setPlayWhenReady(true);
     }
 
-    private MediaSource buildMediaSource(Uri uri) {
-        return new ExtractorMediaSource.Factory(new DefaultHttpDataSourceFactory("bakingapp-exoplayer"));
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        releasePlayer();
+    }
+
+    private void releasePlayer() {
+        player.stop();
+        player.release();
+        player=null;
     }
 }
