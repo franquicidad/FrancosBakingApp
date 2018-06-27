@@ -92,6 +92,7 @@ public class DescriptionFragment extends Fragment {
                     mProcess = mProcessList.get(position);
                     String Description = mProcess.getDescription();
                     String shortDes = mProcess.getShortDescription();
+                    mVideoUrl=mProcess.getVideoURL();
                     descriptionTextview.setText(Description);
                     nameStep.setText(shortDes);
 
@@ -126,6 +127,8 @@ public class DescriptionFragment extends Fragment {
 
             }
         });
+
+        initializePlayer(Uri.parse(mVideoUrl));
 
 
         return view;

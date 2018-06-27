@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mac.francosbakingapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -18,17 +18,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IngredientActivity"
+        <activity
+            android:name=".IngredientActivity"
             android:label="Selected Recipe"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
-        <activity android:name=".StepsActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".StepsActivity"
             android:label="Recipe Step Preparation"
-            android:parentActivityName=".IngredientActivity">
+            android:parentActivityName=".IngredientActivity"></activity>
 
-        </activity>
+        <receiver android:name=".Widget.BankingAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/banking_app_widget_provider_info" />
+        </receiver>
     </application>
 
 </manifest>
