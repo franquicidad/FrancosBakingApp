@@ -26,7 +26,17 @@
         <activity
             android:name=".StepsActivity"
             android:label="Recipe Step Preparation"
-            android:parentActivityName=".IngredientActivity"></activity>
+            android:parentActivityName=".IngredientActivity">
+
+        </activity>
+
+        <service
+
+            android:name=".Widget.RecipeIngredientsWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+        </service>
+
+        <service android:name=".Widget.UpdateWidgetService"/>
 
         <receiver android:name=".Widget.BankingAppWidgetProvider">
             <intent-filter>
