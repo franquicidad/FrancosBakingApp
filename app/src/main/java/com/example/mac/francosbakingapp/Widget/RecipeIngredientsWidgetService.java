@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.example.mac.francosbakingapp.R;
+
 import java.util.List;
 
 public class RecipeIngredientsWidgetService extends RemoteViewsService{
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return (new );
+        return (new ListViewFactory(this.getApplicationContext(),intent) );
     }
 
     class ListViewFactory implements RemoteViewsService.RemoteViewsFactory{
@@ -18,9 +20,9 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
         private List<String> mIngredientsList;
         private Context context;
 
-        public ListViewFactory(List<String> mIngredientsList, Context context) {
-            this.mIngredientsList = mIngredientsList;
+        public ListViewFactory( Context context,Intent intent) {
             this.context = context;
+            mIngredientsList=intent.getStringArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST);
         }
 
         @Override
@@ -30,6 +32,7 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
 
         @Override
         public void onDataSetChanged() {
+            this.mIngredientsList= BankingAppWidgetProvider.mIngredientsList;
 
         }
 
@@ -40,12 +43,26 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
 
         @Override
         public int getCount() {
-            return 0;
+            if(mIngredientsList!= null){
+                return mIngredientsList.size();
+            }else{
+                return 1;
+            }
         }
 
         @Override
         public RemoteViews getViewAt(int i) {
-            return null;
+
+            RemoteViews widgetItem=new RemoteViews(context.getPackageName(), R.layout.ingredient_list_item_widget_layout);
+            if(mIngredientsList==null){
+                widgetItem.setTextViewText(R.id.tv_widget_population,"No data to display,Select a recipe in app");
+            }else {
+                widgetItem.setTextViewText(R.id.tv_widget_population,mIngredientsList.get(i));
+            }
+
+            Intent fillin=new Intent();
+            widgetItem.setOnClickFillInIntent(R.id.tv_widget_population,fillin);
+            return widgetItem;
         }
 
         @Override
