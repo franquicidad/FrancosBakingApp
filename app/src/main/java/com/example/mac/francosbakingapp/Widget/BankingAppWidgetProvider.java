@@ -9,22 +9,24 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.example.mac.francosbakingapp.IngredientActivity;
+import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class BankingAppWidgetProvider extends AppWidgetProvider {
 
-    public static ArrayList<String> mIngredientsList;
+    public static ArrayList<Ingredient> mIngredientsList;
 
     Recipe mRecipe;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId, ArrayList<String> mIngredientsList) {
+                                int appWidgetId, ArrayList<Ingredient> mIngredientsList) {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.banking_app_widget_provider);
@@ -33,6 +35,7 @@ public class BankingAppWidgetProvider extends AppWidgetProvider {
         views.setPendingIntentTemplate(R.id.ListView_ingredients_for_widget,ingredientsPendingIntent);
 
         Intent widgetServiceIntent =new Intent (context,RecipeIngredientsWidgetService.class);
+        List<Ingredient> ingredientList=new
         widgetServiceIntent.putStringArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST,mIngredientsList);
         views.setRemoteAdapter(R.id.ListView_ingredients_for_widget,widgetServiceIntent);
 
@@ -58,7 +61,7 @@ public class BankingAppWidgetProvider extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    public void updateWidgets(Context context, AppWidgetManager appWidgetManager,int[] appWidgetIds,ArrayList<String> mIngredientsList){
+    public void updateWidgets(Context context, AppWidgetManager appWidgetManager,int[] appWidgetIds,ArrayList<Ingredient> mIngredientsList){
         for(int appWidgetId:appWidgetIds){
             updateAppWidget(context,appWidgetManager,appWidgetId,mIngredientsList);
         }

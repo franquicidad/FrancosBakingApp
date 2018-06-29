@@ -53,8 +53,6 @@ public class IngredientFragment extends Fragment {
 
         UpdateWidgetService.startUpdateWidgetService(getContext(),Arraylist2);
 
-
-
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),2);
         mIngredientAdapter=new IngredientAdapter(mArraylistIngredients);
         recyclerView.setAdapter(mIngredientAdapter);

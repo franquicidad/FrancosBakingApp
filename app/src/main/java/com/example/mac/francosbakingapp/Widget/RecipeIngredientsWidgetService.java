@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeIngredientsWidgetService extends RemoteViewsService{
@@ -17,7 +19,7 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
 
     class ListViewFactory implements RemoteViewsService.RemoteViewsFactory{
 
-        private List<String> mIngredientsList;
+        private ArrayList<Ingredient> mIngredientsList;
         private Context context;
 
         public ListViewFactory( Context context,Intent intent) {
