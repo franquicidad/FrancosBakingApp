@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UpdateWidgetService extends IntentService {
     public static final String KEY_WIDGET_INGREDIENTS_LIST="key_widget_ingredients_List";
@@ -17,7 +18,7 @@ public class UpdateWidgetService extends IntentService {
 
     public static void startUpdateWidgetService(Context context, ArrayList<String> ingredientsList){
         Intent intent =new Intent(context,UpdateWidgetService.class);
-        intent.putExtra(KEY_WIDGET_INGREDIENTS_LIST,ingredientsList);
+        intent.putExtra(KEY_WIDGET_INGREDIENTS_LIST,String.valueOf(ingredientsList));
         context.startService(intent);
 
     }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.Widget.UpdateWidgetService;
 
 import org.w3c.dom.Text;
 
@@ -37,6 +38,8 @@ public class IngredientFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+
+
     }
 
     @Nullable
@@ -49,6 +52,8 @@ public class IngredientFragment extends Fragment {
         mRecipe=getArguments().getParcelable("ingredientBundle");
 
         mArraylistIngredients=mRecipe.getIngredients();
+
+        UpdateWidgetService.startUpdateWidgetService(getContext(),mArraylistIngredients);
 
 
 

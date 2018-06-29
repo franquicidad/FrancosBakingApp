@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.example.mac.francosbakingapp.IngredientActivity;
+import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 public class BankingAppWidgetProvider extends AppWidgetProvider {
 
     public static ArrayList<String> mIngredientsList;
+
+    Recipe mRecipe;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, ArrayList<String> mIngredientsList) {
