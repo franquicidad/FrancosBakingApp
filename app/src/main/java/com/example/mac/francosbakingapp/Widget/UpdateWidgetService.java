@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+import com.example.mac.francosbakingapp.Model.Ingredient;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class UpdateWidgetService extends IntentService {
         super("UpdateWidgetService");
     }
 
-    public static void startUpdateWidgetService(Context context, ArrayList<String> ingredientsList){
+    public static void startUpdateWidgetService(Context context, ArrayList<Ingredient> ingredientsList){
         Intent intent =new Intent(context,UpdateWidgetService.class);
         intent.putExtra(KEY_WIDGET_INGREDIENTS_LIST,String.valueOf(ingredientsList));
         context.startService(intent);

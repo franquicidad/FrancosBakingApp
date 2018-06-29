@@ -36,10 +36,6 @@ public class IngredientFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
     }
 
     @Nullable
@@ -53,7 +49,9 @@ public class IngredientFragment extends Fragment {
 
         mArraylistIngredients=mRecipe.getIngredients();
 
-        UpdateWidgetService.startUpdateWidgetService(getContext(),mArraylistIngredients);
+        ArrayList<Ingredient> Arraylist2=new ArrayList<>(mArraylistIngredients);
+
+        UpdateWidgetService.startUpdateWidgetService(getContext(),Arraylist2);
 
 
 
