@@ -30,7 +30,7 @@ public class UpdateWidgetService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
 
         if(intent != null){
-            ArrayList<Ingredient> ingredientsList=intent.getStringArrayListExtra(KEY_WIDGET_INGREDIENTS_LIST);
+            ArrayList<Ingredient> ingredientsList=intent.getParcelableArrayListExtra(KEY_WIDGET_INGREDIENTS_LIST);
             Intent updateWidgetIntent=new Intent(ACTION_UP_WIDGET);
             updateWidgetIntent.setAction(ACTION_UP_WIDGET);
             updateWidgetIntent.putExtra(KEY_WIDGET_INGREDIENTS_LIST,ingredientsList);

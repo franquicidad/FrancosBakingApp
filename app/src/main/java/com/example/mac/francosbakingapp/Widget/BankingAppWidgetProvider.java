@@ -35,8 +35,7 @@ public class BankingAppWidgetProvider extends AppWidgetProvider {
         views.setPendingIntentTemplate(R.id.ListView_ingredients_for_widget,ingredientsPendingIntent);
 
         Intent widgetServiceIntent =new Intent (context,RecipeIngredientsWidgetService.class);
-        List<Ingredient> ingredientList=new
-        widgetServiceIntent.putStringArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST,mIngredientsList);
+        widgetServiceIntent.putParcelableArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST,mIngredientsList);
         views.setRemoteAdapter(R.id.ListView_ingredients_for_widget,widgetServiceIntent);
 
         // Instruct the widget manager to update the widget
@@ -72,7 +71,7 @@ public class BankingAppWidgetProvider extends AppWidgetProvider {
         AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(context);
         int[] appWidgetIds=appWidgetManager.getAppWidgetIds(new ComponentName(context,BankingAppWidgetProvider.class));
         if(intent.getAction().equals(UpdateWidgetService.ACTION_UP_WIDGET)){
-            mIngredientsList=intent.getStringArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST);
+            mIngredientsList=intent.getParcelableArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST);
         }
 
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,R.id.ListView_ingredients_for_widget);

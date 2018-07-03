@@ -24,7 +24,7 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
 
         public ListViewFactory( Context context,Intent intent) {
             this.context = context;
-            mIngredientsList=intent.getStringArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST);
+            mIngredientsList=intent.getParcelableArrayListExtra(UpdateWidgetService.KEY_WIDGET_INGREDIENTS_LIST);
         }
 
         @Override
@@ -59,7 +59,7 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
             if(mIngredientsList==null){
                 widgetItem.setTextViewText(R.id.tv_widget_population,"No data to display,Select a recipe in app");
             }else {
-                widgetItem.setTextViewText(R.id.tv_widget_population,mIngredientsList.get(i));
+                widgetItem.setTextViewText(R.id.tv_widget_population,mIngredientsList.get(i).getIngredient());
             }
 
             Intent fillin=new Intent();
