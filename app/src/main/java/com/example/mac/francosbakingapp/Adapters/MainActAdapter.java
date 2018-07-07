@@ -23,7 +23,7 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
     private RecipesAdapterOnClickHandler recipesAdapterOnClickHandler;
 
     public interface RecipesAdapterOnClickHandler {
-        void onRecipeClick(Recipe recipe);
+        void onRecipeClick(Recipe recipe,int position);
     }
 
     public MainActAdapter(RecipesAdapterOnClickHandler OnClickHandler){
@@ -96,8 +96,9 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
         @Override
         public void onClick(View view) {
+            Recipe recipe=mRecipeArrayListData.get(getAdapterPosition());
 
-            recipesAdapterOnClickHandler.onRecipeClick(mRecipeArrayListData.get(getAdapterPosition()));
+            recipesAdapterOnClickHandler.onRecipeClick(recipe,getAdapterPosition());
 
         }
     }

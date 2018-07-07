@@ -1,6 +1,8 @@
 package com.example.mac.francosbakingapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.mac.francosbakingapp.Adapters.MainActAdapter;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.Widget.BankingAppWidgetProvider;
 
 import java.util.ArrayList;
 
@@ -20,7 +23,9 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     private ArrayList<Recipe> mRecipeList;
     private MainActAdapter mainActAdapter;
+    private Recipe mRecipe;
     public static String RECIPE_KEY="recipe_key";
+    public static String POSITION_KEY= "position_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,14 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
     }
 
     @Override
-    public void onRecipeClick(Recipe recipe) {
+    public void onRecipeClick(Recipe recipe,int position) {
+
+        mRecipe=recipe;
+        SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt(MainActivity.POSITION_KEY,position);
+        editor.apply();
+        BankingAppWidgetProvider.sendUpdateBroadcast(this);
 
         Intent IngredientsIntent =new Intent(this,IngredientActivity.class);
 
