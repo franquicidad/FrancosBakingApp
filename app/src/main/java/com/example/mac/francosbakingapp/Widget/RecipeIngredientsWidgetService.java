@@ -7,15 +7,14 @@ import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.example.mac.francosbakingapp.MainActivity;
+import com.example.mac.francosbakingapp.ActivitiesUI.MainActivity;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
-import com.example.mac.francosbakingapp.RetrofitBuilder;
+import com.example.mac.francosbakingapp.RetrofitJSON.RetrofitBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -47,7 +46,7 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
         }
 
         private void loadData() {
-            Call <ArrayList<Recipe>> arrayListCall= RetrofitBuilder.getRecipes();
+            Call <ArrayList<Recipe>> arrayListCall= (Call<ArrayList<Recipe>>) RetrofitBuilder.getRecipes();
             try{
                 Response<ArrayList<Recipe>> arrayListResponse=arrayListCall.execute();
                 if (arrayListResponse!=null){
@@ -84,7 +83,7 @@ public class RecipeIngredientsWidgetService extends RemoteViewsService{
             double ingredientQuantity=actIngredient.getQuantity();
             String ingredientMeasure=actIngredient.getMeasure();
             String ingredientString=String.format("${title}",ingredientName,ingredientQuantity,ingredientMeasure);
-            remoteViews.setTextViewText(R.id.tv_widget_population,ingredientString);
+            remoteViews.setTextViewText(R.id.tv_widget_population,ingredientName+" " +ingredientQuantity+" "+ingredientMeasure);
 
             return remoteViews;
         }

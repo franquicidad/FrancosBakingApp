@@ -1,4 +1,4 @@
-package com.example.mac.francosbakingapp;
+package com.example.mac.francosbakingapp.RetrofitJSON;
 
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
@@ -18,14 +18,17 @@ public class RetrofitBuilder {
     static OkHttpClient httpClient=new OkHttpClient.Builder().build();
 
 
-    public static  RecipesInterface getRecipes(){
-        interfaceRecipes= new Retrofit.Builder()
-                .baseUrl("http://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/")
-                .client(httpClient)
-                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
-                .build().create(RecipesInterface.class);
+    public static  Call<ArrayList<Recipe>> getRecipes(){
 
-        return  interfaceRecipes;
+        // Create a basic REST adapter which points to the BASE_URL
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RecipesInterface apiFactory = retrofit.create(RecipesInterface.class);
+
+        return  apiFactory.getRecipesListTask();
     }
 
     public  interface RecipesInterface{

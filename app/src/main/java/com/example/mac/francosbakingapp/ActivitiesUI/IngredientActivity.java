@@ -1,24 +1,20 @@
-package com.example.mac.francosbakingapp;
+package com.example.mac.francosbakingapp.ActivitiesUI;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
-import android.support.v4.app.Fragment;
 import android.widget.TextView;
 
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
+import com.example.mac.francosbakingapp.Fragments.IngredientFragment;
+import com.example.mac.francosbakingapp.Fragments.ProcessFragment;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class IngredientActivity extends AppCompatActivity {
 

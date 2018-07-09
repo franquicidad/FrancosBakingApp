@@ -1,4 +1,4 @@
-package com.example.mac.francosbakingapp;
+package com.example.mac.francosbakingapp.Fragments;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mac.francosbakingapp.Model.Process;
+import com.example.mac.francosbakingapp.R;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayer;

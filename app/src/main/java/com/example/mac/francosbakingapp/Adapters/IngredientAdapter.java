@@ -8,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.mac.francosbakingapp.IngredientActivity;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

@@ -1,14 +1,15 @@
-package com.example.mac.francosbakingapp;
+package com.example.mac.francosbakingapp.ActivitiesUI;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mac.francosbakingapp.Fragments.DescriptionFragment;
+import com.example.mac.francosbakingapp.Fragments.ProcessFragment;
 import com.example.mac.francosbakingapp.Model.Process;
-import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.R;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 

@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ActivitiesUI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,14 +19,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".IngredientActivity"
+            android:name=".ActivitiesUI.IngredientActivity"
             android:label="Selected Recipe"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".ActivitiesUI.MainActivity"></activity>
         <activity
-            android:name=".StepsActivity"
+            android:name=".ActivitiesUI.StepsActivity"
             android:label="Recipe Step Preparation"
-            android:parentActivityName=".IngredientActivity">
+            android:parentActivityName=".ActivitiesUI.IngredientActivity">
 
         </activity>
 
@@ -47,6 +47,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/banking_app_widget_provider_info" />
         </receiver>
+        <service android:name=".Widget.RecipeIngredientsWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+
+        </service>
     </application>
 
 </manifest>

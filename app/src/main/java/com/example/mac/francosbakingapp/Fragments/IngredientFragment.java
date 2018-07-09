@@ -1,4 +1,4 @@
-package com.example.mac.francosbakingapp;
+package com.example.mac.francosbakingapp.Fragments;
 
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.R;
 import com.example.mac.francosbakingapp.Widget.UpdateWidgetService;
 
 import org.w3c.dom.Text;

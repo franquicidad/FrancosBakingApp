@@ -1,4 +1,4 @@
-package com.example.mac.francosbakingapp;
+package com.example.mac.francosbakingapp.ActivitiesUI;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.mac.francosbakingapp.Adapters.MainActAdapter;
 import com.example.mac.francosbakingapp.Model.Recipe;
+import com.example.mac.francosbakingapp.R;
+import com.example.mac.francosbakingapp.RetrofitJSON.RetrofitBuilder;
 import com.example.mac.francosbakingapp.Widget.BankingAppWidgetProvider;
 
 import java.util.ArrayList;
@@ -17,7 +19,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements MainActAdapter.RecipesAdapterOnClickHandler{
 
@@ -40,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerViewMainRecipe.setLayoutManager(linearLayoutManager);
 
-        RetrofitBuilder.RecipesInterface recipesInterface=RetrofitBuilder.getRecipes();
-        Call<ArrayList<Recipe>> arrayListCall=recipesInterface.getRecipesListTask();
+//        RetrofitBuilder.RecipesInterface recipesInterface=RetrofitBuilder.getRecipes();
+//        Call <ArrayList<Recipe>> call = RetrofitBuilder.getRecipes();
+
+        Call<ArrayList<Recipe>> arrayListCall= RetrofitBuilder.getRecipes();
 
         arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override

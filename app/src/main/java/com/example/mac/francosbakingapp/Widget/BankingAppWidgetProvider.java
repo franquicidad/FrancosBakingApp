@@ -10,17 +10,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
-import android.widget.RemoteViewsService;
 
-import com.example.mac.francosbakingapp.IngredientActivity;
-import com.example.mac.francosbakingapp.MainActivity;
+import com.example.mac.francosbakingapp.ActivitiesUI.IngredientActivity;
+import com.example.mac.francosbakingapp.ActivitiesUI.MainActivity;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
-import com.example.mac.francosbakingapp.RetrofitBuilder;
+import com.example.mac.francosbakingapp.RetrofitJSON.RetrofitBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +49,7 @@ public class BankingAppWidgetProvider extends AppWidgetProvider {
 
     private static void loadRecipes(final Context context,final AppWidgetManager appWidgetManager,final int appWidgetId){
 
-        Call <ArrayList<Recipe>> call = (Call<ArrayList<Recipe>>) RetrofitBuilder.getRecipes();
+        Call <ArrayList<Recipe>> call = RetrofitBuilder.getRecipes();
 
         call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
@@ -69,6 +67,7 @@ public class BankingAppWidgetProvider extends AppWidgetProvider {
                 Intent remoteViewsIntent=new Intent(context,RecipeIngredientsWidgetService.class);
                 views.setRemoteAdapter(R.id.ListView_ingredients_for_widget,remoteViewsIntent);
                 views.setTextViewText(R.id.recipe_widget_name,mRecipe.getName());
+                views.setTextViewText(R.id.tv_widget_population,mRecipe.getIngredients().toString());
 
                 views.setOnClickPendingIntent(R.id.widget_container_layout,pendingIntent);
 
