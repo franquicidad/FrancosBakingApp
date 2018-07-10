@@ -30,6 +30,7 @@ public class RecipesMainFragment extends android.support.v4.app.Fragment impleme
         MainActAdapter mainActAdapter=new MainActAdapter(this);
         main_rv.setAdapter(mainActAdapter);
         main_rv.setLayoutManager(linearLayoutManager);
+        main_rv.setHasFixedSize(true);
 
 
 
