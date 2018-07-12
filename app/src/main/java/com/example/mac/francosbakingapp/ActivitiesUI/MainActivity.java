@@ -38,12 +38,11 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         if(findViewById(R.id.layout_distinguish_tablet)!=null) {
             mHasTwoPane = true;
 
-            //Add code here.
         }
         else {
             mHasTwoPane = false;
 
-            RecyclerView recyclerViewMainRecipe = findViewById(R.id.recyclerView_recipies);
+            RecyclerView recyclerViewMainRecipe = findViewById(R.id.rv_process);
             mainActAdapter = new MainActAdapter(this);
             recyclerViewMainRecipe.setAdapter(mainActAdapter);
 
@@ -70,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
             });
 
         }
+
+
 
     }
 

@@ -97,6 +97,14 @@ public class DescriptionFragment extends Fragment {
                     descriptionTextview.setText(Description);
                     nameStep.setText(shortDes);
 
+                    if(mVideoUrl !=null) {
+
+
+                        initializePlayer(Uri.parse(mVideoUrl));
+                    }else {
+                        playerView.setVisibility(View.GONE);
+                    }
+
                 } else {
 
                     if (position == 0) {
@@ -123,13 +131,20 @@ public class DescriptionFragment extends Fragment {
                     nameStep.setText(shortDesAdd);
                     descriptionTextview.setText(Description);
 
+                    if(mVideoUrl !=null) {
+
+                        initializePlayer(Uri.parse(mVideoUrl));
+                    }else{
+                        playerView.setVisibility(View.GONE);
+                    }
+
+
                 }
 
 
             }
         });
 
-        initializePlayer(Uri.parse(mVideoUrl));
 
 
         return view;

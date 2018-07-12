@@ -1,47 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <fragment
-        android:id="@+id/recipe_list_static_fragment"
+        android:id="@+id/main_recipe_tablet_fragment"
         android:name="com.example.mac.francosbakingapp.Fragments.RecipesMainFragment"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"/>
-
+        android:layout_width="227dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/process_fragment_layout" />
     <LinearLayout
         android:id="@+id/layout_distinguish_tablet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"/>
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:src="@drawable/brownie"/>
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/tablet_fragment_ingredients"/>
-    </LinearLayout>
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/tablet_fragment_steps"/>
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/tablet_imageOfRecipe"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/cheesecake"/>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:id="@+id/container_tablet_ingredients_fragment"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </FrameLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
 
-
+</LinearLayout>
