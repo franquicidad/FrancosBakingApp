@@ -27,39 +27,47 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
     private Recipe mRecipe;
     public static String RECIPE_KEY="recipe_key";
     public static String POSITION_KEY= "position_key";
+    boolean mHasTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
 
-        RecyclerView recyclerViewMainRecipe=findViewById(R.id.recyclerView_recipies);
-        mainActAdapter=new MainActAdapter(this);
-        recyclerViewMainRecipe.setAdapter(mainActAdapter);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerViewMainRecipe.setLayoutManager(linearLayoutManager);
+        if(findViewById(R.id.layout_distinguish_tablet)!=null) {
+            mHasTwoPane = true;
+        }
+        else {
+            mHasTwoPane = false;
+
+            RecyclerView recyclerViewMainRecipe = findViewById(R.id.recyclerView_recipies);
+            mainActAdapter = new MainActAdapter(this);
+            recyclerViewMainRecipe.setAdapter(mainActAdapter);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            recyclerViewMainRecipe.setLayoutManager(linearLayoutManager);
 
 //        RetrofitBuilder.RecipesInterface recipesInterface=RetrofitBuilder.getRecipes();
 //        Call <ArrayList<Recipe>> call = RetrofitBuilder.getRecipes();
 
-        Call<ArrayList<Recipe>> arrayListCall= RetrofitBuilder.getRecipes();
+            Call<ArrayList<Recipe>> arrayListCall = RetrofitBuilder.getRecipes();
 
-        arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-                mRecipeList=response.body();
-                mainActAdapter.setRecipesData(mRecipeList);
+            arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
+                @Override
+                public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+                    mRecipeList = response.body();
+                    mainActAdapter.setRecipesData(mRecipeList);
 
-            }
+                }
 
-            @Override
-            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+                @Override
+                public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
 
-            }
-        });
+                }
+            });
 
+        }
 
     }
 
