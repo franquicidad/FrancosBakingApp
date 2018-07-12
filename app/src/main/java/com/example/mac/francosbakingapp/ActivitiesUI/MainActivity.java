@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
         if(findViewById(R.id.layout_distinguish_tablet)!=null) {
             mHasTwoPane = true;
+
+            //Add code here.
         }
         else {
             mHasTwoPane = false;
