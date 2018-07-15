@@ -34,6 +34,7 @@ public class StepsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onclick_steps);
 
+
         mArraylistProcess=getIntent().getExtras().getParcelableArrayList(ProcessFragment.PROCESS_EXTRA);
 
         processPosition=getIntent().getExtras().getInt(ProcessFragment.PROCESS_POSITION);
