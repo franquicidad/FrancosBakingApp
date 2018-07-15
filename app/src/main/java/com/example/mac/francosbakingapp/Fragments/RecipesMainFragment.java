@@ -23,16 +23,16 @@ public class RecipesMainFragment extends android.support.v4.app.Fragment impleme
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.process_fragment_layout,container,false);
-
-        main_rv=view.findViewById(R.id.rv_process);
-
-//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-//        MainActAdapter mainActAdapter=new MainActAdapter(this);
-//        main_rv.setAdapter(mainActAdapter);
-//        main_rv.setLayoutManager(linearLayoutManager);
-//        main_rv.setHasFixedSize(true);
-
-
+//
+////        main_rv=view.findViewById(R.id.rv_process);
+//
+////        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+////        MainActAdapter mainActAdapter=new MainActAdapter(this);
+////        main_rv.setAdapter(mainActAdapter);
+////        main_rv.setLayoutManager(linearLayoutManager);
+////        main_rv.setHasFixedSize(true);
+//
+//
 
         return view;
     }

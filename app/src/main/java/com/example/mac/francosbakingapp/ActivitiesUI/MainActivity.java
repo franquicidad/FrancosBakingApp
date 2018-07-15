@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView recyclerViewMainRecipe = findViewById(R.id.rv_process);
+
 
 
         if(findViewById(R.id.layout_distinguish_tablet)!=null) {
@@ -42,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         else {
             mHasTwoPane = false;
 
-            RecyclerView recyclerViewMainRecipe = findViewById(R.id.rv_process);
             mainActAdapter = new MainActAdapter(this);
             recyclerViewMainRecipe.setAdapter(mainActAdapter);
 
