@@ -1,5 +1,6 @@
 package com.example.mac.francosbakingapp.Fragments;
 
+import android.content.Context;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class IngredientFragment extends Fragment {
     private Recipe bund= null;
 
     private List<Ingredient> mArraylistIngredients;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

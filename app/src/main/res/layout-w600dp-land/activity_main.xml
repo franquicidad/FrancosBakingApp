@@ -30,7 +30,7 @@
                 android:src="@drawable/cheesecake"/>
             <FrameLayout
                 android:layout_width="0dp"
-                android:id="@+id/container_tablet_ingredients_fragment"
+                android:id="@+id/ingredient_frameLayout"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 

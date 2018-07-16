@@ -3,12 +3,16 @@ package com.example.mac.francosbakingapp.ActivitiesUI;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Adapters.MainActAdapter;
+import com.example.mac.francosbakingapp.Fragments.IngredientFragment;
+import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
 import com.example.mac.francosbakingapp.RetrofitJSON.RetrofitBuilder;
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     private ArrayList<Recipe> mRecipeList;
     private MainActAdapter mainActAdapter;
+    private static final String INGREDIENT_FRAGMENT ="ingredient_fragment" ;
+
     private Recipe mRecipe;
     public static String RECIPE_KEY="recipe_key";
     public static String POSITION_KEY= "position_key";
@@ -39,6 +45,22 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
         if(findViewById(R.id.layout_distinguish_tablet)!=null) {
             mHasTwoPane = true;
+
+
+            mRecipe= getIntent().getExtras().getParcelable(MainActivity.RECIPE_KEY);
+
+            Bundle ingredientBundle=new Bundle();
+            ingredientBundle.putParcelable("ingredientBundle", mRecipe);
+
+            IngredientFragment ingredientFragment=new IngredientFragment();
+            ingredientFragment.setArguments(ingredientBundle);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
+
+
+
+
 
         }
         else {

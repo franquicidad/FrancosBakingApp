@@ -8,12 +8,17 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.example.mac.francosbakingapp.ActivitiesUI.MainActivity;
+import com.example.mac.francosbakingapp.ActivitiesUI.StepsActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
 /**
@@ -25,11 +30,12 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
 
     @Rule
-    ActivityTestRule<MainActivity> mainActivityActivityTestRule=new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<StepsActivity> mainActivityActivityTestRule=new ActivityTestRule<>(StepsActivity.class);
 
     @Test
-    public void checkIfRecyclerViewHasRecipeInPosition(){
-        onView(ViewMatchers.withId(R.id.recyclerView_recipies)).perform(RecyclerViewActions.scrollToPosition(1));
+    public void checkIfButtonInsertsDescriptionRecipe(){
+        onView(withId(R.id.next_button)).perform(click());
+        onView(withId(R.id.description_textview)).check(matches(isDisplayed()));
 
     }
     @Test
