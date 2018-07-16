@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Adapters.MainActAdapter;
@@ -24,92 +26,113 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements MainActAdapter.RecipesAdapterOnClickHandler{
+public class MainActivity extends AppCompatActivity implements MainActAdapter.RecipesAdapterOnClickHandler {
 
+    private static final String INGREDIENT_FRAGMENT = "ingredient_fragment";
+    public static String RECIPE_KEY = "recipe_key";
+    public static String POSITION_KEY = "position_key";
+    boolean mHasTwoPane;
+    RecyclerView recyclerViewMainRecipe;
     private ArrayList<Recipe> mRecipeList;
     private MainActAdapter mainActAdapter;
-    private static final String INGREDIENT_FRAGMENT ="ingredient_fragment" ;
-
     private Recipe mRecipe;
-    public static String RECIPE_KEY="recipe_key";
-    public static String POSITION_KEY= "position_key";
-    boolean mHasTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView recyclerViewMainRecipe = findViewById(R.id.rv_process);
+        recyclerViewMainRecipe = findViewById(R.id.rv_process);
 
 
-
-        if(findViewById(R.id.layout_distinguish_tablet)!=null) {
+        if (findViewById(R.id.layout_distinguish_tablet) != null) {
             mHasTwoPane = true;
+            loadRecipe();
 
-
-            mRecipe= getIntent().getExtras().getParcelable(MainActivity.RECIPE_KEY);
-
-            Bundle ingredientBundle=new Bundle();
-            ingredientBundle.putParcelable("ingredientBundle", mRecipe);
-
-            IngredientFragment ingredientFragment=new IngredientFragment();
-            ingredientFragment.setArguments(ingredientBundle);
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
-
-
-
-
-
-        }
-        else {
+        } else {
             mHasTwoPane = false;
+            loadRecipe();
+        }
 
-            mainActAdapter = new MainActAdapter(this);
-            recyclerViewMainRecipe.setAdapter(mainActAdapter);
 
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            recyclerViewMainRecipe.setLayoutManager(linearLayoutManager);
+    }
+
+    private void loadRecipe() {
+        mainActAdapter = new MainActAdapter(this);
+        recyclerViewMainRecipe.setAdapter(mainActAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerViewMainRecipe.setLayoutManager(linearLayoutManager);
 
 //        RetrofitBuilder.RecipesInterface recipesInterface=RetrofitBuilder.getRecipes();
 //        Call <ArrayList<Recipe>> call = RetrofitBuilder.getRecipes();
 
-            Call<ArrayList<Recipe>> arrayListCall = RetrofitBuilder.getRecipes();
+        Call<ArrayList<Recipe>> arrayListCall = RetrofitBuilder.getRecipes();
 
-            arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
-                @Override
-                public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-                    mRecipeList = response.body();
-                    mainActAdapter.setRecipesData(mRecipeList);
+        arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+                mRecipeList = response.body();
+                mainActAdapter.setRecipesData(mRecipeList);
 
-                }
+            }
 
-                @Override
-                public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+            @Override
+            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
 
-                }
-            });
-
-        }
-
-
+            }
+        });
 
     }
 
     @Override
-    public void onRecipeClick(Recipe recipe,int position) {
+    public void onRecipeClick(Recipe recipe, int position) {
+        if (mHasTwoPane) {
+            ImageView imageView = (ImageView) findViewById(R.id.tablet_imageOfRecipe);
+            loadIngredientFragment(recipe);
+            switch (position) {
+                case 1:
+                    imageView.setImageResource(R.drawable.nutella);
 
-        mRecipe=recipe;
-        SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putInt(MainActivity.POSITION_KEY,position);
-        editor.apply();
-        BankingAppWidgetProvider.sendUpdateBroadcast(this);
+                    break;
+                case 2:
+                    imageView.setImageResource(R.drawable.brownie);
 
-        Intent IngredientsIntent =new Intent(this,IngredientActivity.class);
+                    break;
 
-        IngredientsIntent.putExtra(RECIPE_KEY,recipe);
-        startActivity(IngredientsIntent);
+                case 3:
+                    imageView.setImageResource(R.drawable.yellowcake);
+
+                    break;
+
+                case 4:
+                    imageView.setImageResource(R.drawable.cheesecake);
+
+                    break;
+            }
+
+        } else {
+
+            mRecipe = recipe;
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(MainActivity.POSITION_KEY, position);
+            editor.apply();
+            BankingAppWidgetProvider.sendUpdateBroadcast(this);
+
+            Intent IngredientsIntent = new Intent(this, IngredientActivity.class);
+
+            IngredientsIntent.putExtra(RECIPE_KEY, recipe);
+            startActivity(IngredientsIntent);
+        }
+    }
+    private void  loadIngredientFragment(Recipe recipe) {
+        Bundle ingredientBundle=new Bundle();
+        ingredientBundle.putParcelable("ingredientBundle", recipe);
+        IngredientFragment ingredientFragment=new IngredientFragment();
+        ingredientFragment.setArguments(ingredientBundle);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
     }
 }
+
