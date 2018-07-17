@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.example.mac.francosbakingapp.Adapters.IngredientAdapter;
 import com.example.mac.francosbakingapp.Adapters.MainActAdapter;
+import com.example.mac.francosbakingapp.Fragments.DescriptionFragment;
 import com.example.mac.francosbakingapp.Fragments.IngredientFragment;
+import com.example.mac.francosbakingapp.Fragments.ProcessFragment;
 import com.example.mac.francosbakingapp.Model.Ingredient;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
@@ -29,6 +31,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements MainActAdapter.RecipesAdapterOnClickHandler {
 
     private static final String INGREDIENT_FRAGMENT = "ingredient_fragment";
+    private static final String PROCESS_FRAGMENT="process_fragment";
+    private static final String EXO_DESCRIP_FRAG="exo_des_frag";
+
     public static String RECIPE_KEY = "recipe_key";
     public static String POSITION_KEY = "position_key";
     boolean mHasTwoPane;
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
             public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
+
+
                 mRecipeList = response.body();
                 mainActAdapter.setRecipesData(mRecipeList);
 
@@ -87,28 +94,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
     @Override
     public void onRecipeClick(Recipe recipe, int position) {
         if (mHasTwoPane) {
-            ImageView imageView = (ImageView) findViewById(R.id.tablet_imageOfRecipe);
-            loadIngredientFragment(recipe);
-            switch (position) {
-                case 1:
-                    imageView.setImageResource(R.drawable.nutella);
-
-                    break;
-                case 2:
-                    imageView.setImageResource(R.drawable.brownie);
-
-                    break;
-
-                case 3:
-                    imageView.setImageResource(R.drawable.yellowcake);
-
-                    break;
-
-                case 4:
-                    imageView.setImageResource(R.drawable.cheesecake);
-
-                    break;
-            }
+            eventAndLoadData(recipe,position);
 
         } else {
 
@@ -125,6 +111,31 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
             startActivity(IngredientsIntent);
         }
     }
+    private  void eventAndLoadData(Recipe recipe,int position){
+        ImageView imageView = (ImageView) findViewById(R.id.tablet_imageOfRecipe);
+        loadIngredientFragment(recipe);
+        loadStepsTabletFragment(recipe);
+        switch (position) {
+            case 0:
+                imageView.setImageResource(R.drawable.nutella);
+
+                break;
+            case 1:
+                imageView.setImageResource(R.drawable.brownie);
+
+                break;
+
+            case 2:
+                imageView.setImageResource(R.drawable.yellowcake);
+
+                break;
+
+            case 3:
+                imageView.setImageResource(R.drawable.cheesecake);
+
+                break;
+        }
+    }
     private void  loadIngredientFragment(Recipe recipe) {
         Bundle ingredientBundle=new Bundle();
         ingredientBundle.putParcelable("ingredientBundle", recipe);
@@ -132,7 +143,28 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         ingredientFragment.setArguments(ingredientBundle);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
+                .replace(R.id.ingredient_frameLayout,ingredientFragment,INGREDIENT_FRAGMENT).commit();
+    }
+
+    private void loadStepsTabletFragment(Recipe recipe){
+
+        Bundle ingredientBundle=new Bundle();
+        ingredientBundle.putParcelable("ingredientBundle", recipe);
+        ProcessFragment processFragment=new ProcessFragment();
+        processFragment.setArguments(ingredientBundle);
+
+
+        getSupportFragmentManager().beginTransaction().add(R.id.tablet_fragment_steps,processFragment,PROCESS_FRAGMENT).commit();
+
+    }
+
+    private void loadExoAndDescription(Recipe recipe){
+
+        DescriptionFragment descriptionFragment=new DescriptionFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.tablet_fragment_exo_description,descriptionFragment,EXO_DESCRIP_FRAG);
+
     }
 }
 

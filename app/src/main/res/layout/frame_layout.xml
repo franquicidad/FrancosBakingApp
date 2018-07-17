@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:id="@+id/framelayoutgeneral">
 
+    <TextView
+        android:id="@+id/exoplayer_null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="No Video is Available"
+        android:textStyle="bold"
+        android:layout_marginLeft="135dp"
+        android:visibility="gone"
+        android:elevation="10dp"/>
+
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/exoplayer_view"
         android:layout_width="match_parent"

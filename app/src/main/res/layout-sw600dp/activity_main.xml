@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/main_recipe_tablet_fragment"
         android:name="com.example.mac.francosbakingapp.Fragments.RecipesMainFragment"
-        android:layout_width="227dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         tools:layout="@layout/process_fragment_layout" />
     <LinearLayout
@@ -35,6 +35,44 @@
                 android:layout_weight="1">
 
             </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <FrameLayout
+                    android:id="@+id/tablet_fragment_steps"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                <FrameLayout
+                    android:id="@+id/tablet_fragment_exo_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </LinearLayout>
 
 

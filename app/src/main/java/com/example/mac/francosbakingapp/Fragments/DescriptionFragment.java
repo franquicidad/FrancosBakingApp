@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,25 +37,20 @@ import java.util.List;
 
 public class DescriptionFragment extends Fragment {
 
-    private Context context;
     Process mProcess;
+    TextView descriptionTextview, nameStep;
+    Bundle positionBund;
+    TextView videoIsNull;
+    int position;
+    Button previousB, nextB;
+    private Context context;
     private SimpleExoPlayerView mExoPlayerView;
     private SimpleExoPlayer mExoPlayer;
     private PlayerView playerView;
-    TextView descriptionTextview, nameStep;
-    Bundle positionBund;
-    String mVideoUrl;
     private boolean playWhenReady;
     private int startWindow;
     private long playbackPosition;
-
     private SimpleExoPlayer player;
-
-
-    int position;
-    Button previousB, nextB;
-
-
     private ArrayList<Process> mProcessList;
 
     @Nullable
@@ -68,6 +64,7 @@ public class DescriptionFragment extends Fragment {
         nextB = view.findViewById(R.id.next_button);
         nameStep = view.findViewById(R.id.step_name);
         playerView = view.findViewById(R.id.exoplayer_view);
+        videoIsNull = view.findViewById(R.id.exoplayer_null);
 
 
         mProcessList = getArguments().getParcelableArrayList("ArrayList");
@@ -77,10 +74,12 @@ public class DescriptionFragment extends Fragment {
         mProcess = mProcessList.get(position);
         final String Description = mProcess.getDescription();
         final String nameDes = mProcess.getShortDescription();
-        mVideoUrl = mProcess.getVideoURL();
+
+        getVideo(mProcess.getVideoURL());
 
         nameStep.setText(nameDes);
         descriptionTextview.setText(Description);
+
 
         previousB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,17 +92,11 @@ public class DescriptionFragment extends Fragment {
                     mProcess = mProcessList.get(position);
                     String Description = mProcess.getDescription();
                     String shortDes = mProcess.getShortDescription();
-                    mVideoUrl=mProcess.getVideoURL();
+
                     descriptionTextview.setText(Description);
                     nameStep.setText(shortDes);
 
-                    if(mVideoUrl !=null) {
-
-
-                        initializePlayer(Uri.parse(mVideoUrl));
-                    }else {
-                        playerView.setVisibility(View.GONE);
-                    }
+                    getVideo(mProcess.getVideoURL());
 
                 } else {
 
@@ -119,35 +112,37 @@ public class DescriptionFragment extends Fragment {
         nextB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 position++;
-
-                if (position >= mProcessList.size()) {
+                if (position == mProcessList.size()) {
                     Toast.makeText(getContext(), "You are in the Last step of this recipe", Toast.LENGTH_LONG).show();
                 } else {
+
                     mProcess = mProcessList.get(position);
                     String Description = mProcess.getDescription();
                     String shortDesAdd = mProcess.getShortDescription();
                     nameStep.setText(shortDesAdd);
                     descriptionTextview.setText(Description);
-
-                    if(mVideoUrl !=null) {
-
-                        initializePlayer(Uri.parse(mVideoUrl));
-                    }else{
-                        playerView.setVisibility(View.GONE);
-                    }
-
+                    getVideo(mProcess.getVideoURL().toString());
 
                 }
-
 
             }
         });
 
-
-
         return view;
+    }
+
+    private void getVideo(String mVideoUrl) {
+        Log.d("Carga video " ,mVideoUrl);
+        if (mVideoUrl != "" ) {
+            initializePlayer(Uri.parse(mVideoUrl));
+            videoIsNull.setVisibility(View.GONE);
+        } else {
+            videoIsNull.setVisibility(View.VISIBLE);
+            playerView.setVisibility(View.GONE);
+
+        }
+
     }
 
 
@@ -155,17 +150,12 @@ public class DescriptionFragment extends Fragment {
         player = ExoPlayerFactory.newSimpleInstance(new DefaultRenderersFactory(getContext()),
                 new DefaultTrackSelector(),
                 new DefaultLoadControl());
-
         playerView.setPlayer(player);
         player.setPlayWhenReady(playWhenReady);
         player.seekTo(startWindow, playbackPosition);
-
         String userAgent = Util.getUserAgent(getContext(), "bakingapp-exoplayer");
-
-
-        Uri uri = Uri.parse(mVideoUrl);
-        MediaSource mediaSource =new ExtractorMediaSource(mediaUri,new DefaultDataSourceFactory(getContext(),userAgent),
-                new DefaultExtractorsFactory(),null,null);
+        MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getContext(), userAgent),
+                new DefaultExtractorsFactory(), null, null);
 
         player.prepare(mediaSource);
         player.setPlayWhenReady(true);
@@ -180,6 +170,6 @@ public class DescriptionFragment extends Fragment {
     private void releasePlayer() {
         player.stop();
         player.release();
-        player=null;
+        player = null;
     }
 }
