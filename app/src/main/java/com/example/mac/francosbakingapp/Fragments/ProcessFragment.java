@@ -32,6 +32,7 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     RecyclerView processRecyclerview;
     Context mContext;
 
+
     private List<Process> mArrayListProcess;
 
 
@@ -74,6 +75,8 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     @Override
     public void onProcessClicked(List<Process> processes, int position) {
 
+
+
         Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
 
         ArrayList<Process> processes1=new ArrayList<>(mArrayListProcess);
@@ -81,6 +84,8 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
         stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA,processes1);
         stepActivityInt.putExtra(PROCESS_POSITION,position);
         startActivity(stepActivityInt);
+
+        if()
 
         //Bundle pos=new Bundle(); This is for tablet
 

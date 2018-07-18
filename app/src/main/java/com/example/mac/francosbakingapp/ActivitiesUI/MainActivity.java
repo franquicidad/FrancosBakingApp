@@ -17,12 +17,14 @@ import com.example.mac.francosbakingapp.Fragments.DescriptionFragment;
 import com.example.mac.francosbakingapp.Fragments.IngredientFragment;
 import com.example.mac.francosbakingapp.Fragments.ProcessFragment;
 import com.example.mac.francosbakingapp.Model.Ingredient;
+import com.example.mac.francosbakingapp.Model.Process;
 import com.example.mac.francosbakingapp.Model.Recipe;
 import com.example.mac.francosbakingapp.R;
 import com.example.mac.francosbakingapp.RetrofitJSON.RetrofitBuilder;
 import com.example.mac.francosbakingapp.Widget.BankingAppWidgetProvider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,8 +98,6 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         if (mHasTwoPane) {
             eventAndLoadData(recipe,position);
 
-        } else {
-
             mRecipe = recipe;
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -105,12 +105,20 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
             editor.apply();
             BankingAppWidgetProvider.sendUpdateBroadcast(this);
 
+        } else {
+
+
             Intent IngredientsIntent = new Intent(this, IngredientActivity.class);
 
             IngredientsIntent.putExtra(RECIPE_KEY, recipe);
             startActivity(IngredientsIntent);
         }
+
+
     }
+
+
+
     private  void eventAndLoadData(Recipe recipe,int position){
         ImageView imageView = (ImageView) findViewById(R.id.tablet_imageOfRecipe);
         loadIngredientFragment(recipe);
@@ -136,6 +144,11 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
                 break;
         }
     }
+    private void eventAndLoadDataOnStepsList(Recipe recipe,int position){
+
+        loadExoAndDescription(recipe);
+
+    }
     private void  loadIngredientFragment(Recipe recipe) {
         Bundle ingredientBundle=new Bundle();
         ingredientBundle.putParcelable("ingredientBundle", recipe);
@@ -154,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         processFragment.setArguments(ingredientBundle);
 
 
-        getSupportFragmentManager().beginTransaction().add(R.id.tablet_fragment_steps,processFragment,PROCESS_FRAGMENT).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.tablet_fragment_steps,processFragment,PROCESS_FRAGMENT).commit();
 
     }
 
@@ -163,7 +176,11 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
         DescriptionFragment descriptionFragment=new DescriptionFragment();
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.tablet_fragment_exo_description,descriptionFragment,EXO_DESCRIP_FRAG);
+                .replace(R.id.tablet_fragment_exo_description,descriptionFragment,EXO_DESCRIP_FRAG);
+
+    }
+
+    public void onProcessClicked(Process process,int position){
 
     }
 }

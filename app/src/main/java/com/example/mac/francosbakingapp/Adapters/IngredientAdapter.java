@@ -42,7 +42,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.in
         mIngredientList = ingredientList;
         notifyDataSetChanged();
     }
-    //guachu
 
     public class ingredientAdapterViewHolder extends RecyclerView.ViewHolder {
 
