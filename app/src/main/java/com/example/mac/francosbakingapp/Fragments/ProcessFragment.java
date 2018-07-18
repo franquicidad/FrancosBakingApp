@@ -21,16 +21,17 @@ import com.example.mac.francosbakingapp.ActivitiesUI.StepsActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessFragment extends Fragment implements ProcessAdapter.onProcessAdapterClickHandler{
+public class ProcessFragment extends Fragment implements ProcessAdapter.onProcessAdapterClickHandler {
 
-    private static final String TAG ="logtag" ;
+    private static final String TAG = "logtag";
     ProcessAdapter mProcessAdapter;
     private Recipe mRecipe;
-    public static final String RECIPE_EXTRA="recipe_extra";
-    public static final String PROCESS_EXTRA="process_extra";
-    public static final String PROCESS_POSITION="process_position";
+    public static final String RECIPE_EXTRA = "recipe_extra";
+    public static final String PROCESS_EXTRA = "process_extra";
+    public static final String PROCESS_POSITION = "process_position";
     RecyclerView processRecyclerview;
     Context mContext;
+    boolean mIsTablet;
 
 
     private List<Process> mArrayListProcess;
@@ -40,17 +41,19 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.process_fragment_layout,container,false);
+        View view = inflater.inflate(R.layout.process_fragment_layout, container, false);
 
-        processRecyclerview=view.findViewById(R.id.rv_process);
+        processRecyclerview = view.findViewById(R.id.rv_process);
 
-        mRecipe=getArguments().getParcelable("ingredientBundle");
+        mRecipe = getArguments().getParcelable("ingredientBundle");
 
-        mArrayListProcess=mRecipe.getSteps();
+        mArrayListProcess = mRecipe.getSteps();
 
-        mArrayListProcess=new ArrayList<Process>(mArrayListProcess);
+        mArrayListProcess = new ArrayList<Process>(mArrayListProcess);
 
-        Bundle bundle1=new Bundle();
+        mIsTablet = getArguments().getString("phone_or_tablet").equals("tablet");
+
+        Bundle bundle1 = new Bundle();
 
 
 // Get an ArrayList from a List
@@ -59,8 +62,8 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
 // Put the ArrayList in the Bundle
         bundle1.putParcelableArrayList("stepsList", processes);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-        mProcessAdapter=new ProcessAdapter(mArrayListProcess,this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        mProcessAdapter = new ProcessAdapter(mArrayListProcess, this);
         processRecyclerview.setAdapter(mProcessAdapter);
         processRecyclerview.setLayoutManager(linearLayoutManager);
         processRecyclerview.setHasFixedSize(true);
@@ -70,31 +73,29 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
 
     /**
      * Here you set the click to go to the other layout the recipe details steps
+     *
      * @param
      */
     @Override
     public void onProcessClicked(List<Process> processes, int position) {
 
 
+        Intent stepActivityInt = new Intent(getContext(), StepsActivity.class);
 
-        Intent stepActivityInt=new Intent(getContext(),StepsActivity.class);
+        ArrayList<Process> processes1 = new ArrayList<>(mArrayListProcess);
 
-        ArrayList<Process> processes1=new ArrayList<>(mArrayListProcess);
-
-        stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA,processes1);
-        stepActivityInt.putExtra(PROCESS_POSITION,position);
+        stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA, processes1);
+        stepActivityInt.putExtra(PROCESS_POSITION, position);
         startActivity(stepActivityInt);
 
-        if()
+        if (mIsTablet) {
+            Bundle pos = new Bundle();
+            pos.putInt(PROCESS_POSITION, position);
+            DescriptionFragment descriptionFragment = new DescriptionFragment();
+            descriptionFragment.setArguments(pos);
 
-        //Bundle pos=new Bundle(); This is for tablet
+        }
 
-
-//        pos.putInt(PROCESS_POSITION,position);
-//        DescriptionFragment descriptionFragment=new DescriptionFragment();
-//        descriptionFragment.setArguments(pos);
 
     }
-
-
 }

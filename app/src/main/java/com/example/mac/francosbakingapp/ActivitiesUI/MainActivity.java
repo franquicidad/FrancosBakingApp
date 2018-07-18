@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
         Bundle ingredientBundle=new Bundle();
         ingredientBundle.putParcelable("ingredientBundle", recipe);
+        ingredientBundle.putString("phone_or_tablet", mHasTwoPane ? "tablet" : "phone");
         ProcessFragment processFragment=new ProcessFragment();
         processFragment.setArguments(ingredientBundle);
 

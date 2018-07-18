@@ -38,6 +38,7 @@ public class IngredientActivity extends AppCompatActivity {
 
         Bundle ingredientBundle=new Bundle();
         ingredientBundle.putParcelable("ingredientBundle", detailRecipe);
+        ingredientBundle.putString("phone_or_tablet", "phone");
 
         ImageView recipe_image_ing_act =findViewById(R.id.ingredient_detail_imageView);
         TextView recipe_textView_ing_act=findViewById(R.id.textView_recipe);
