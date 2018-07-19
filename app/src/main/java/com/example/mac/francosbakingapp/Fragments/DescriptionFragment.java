@@ -52,7 +52,7 @@ public class DescriptionFragment extends Fragment {
     private SimpleExoPlayerView mExoPlayerView;
     private PlayerView playerView;
     private boolean playWhenReady;
-    private static MediaSessionCompat mMediaSession;// problems
+    //private static MediaSessionCompat mMediaSession;// problems
 
     private int startWindow;
     private long playbackPosition;
@@ -172,34 +172,34 @@ public class DescriptionFragment extends Fragment {
         return view;
     }
 
-    private void initializeMediaSession() {
-
-        // Create a new MediaSession
-        mMediaSession = new MediaSessionCompat(this, StepActivity.class.getSimpleName());
-
-        // Enable callbacks from MediaButtons and TransportControls
-        mMediaSession.setFlags(
-                MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS |
-                        MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
-
-        // Do not let MediaButtons restart the player when the app is not visible
-        mMediaSession.setMediaButtonReceiver(null);
-
-        mStateBuilder = new PlaybackStateCompat.Builder()
-                .setActions(
-                        PlaybackStateCompat.ACTION_PLAY |
-                                PlaybackStateCompat.ACTION_PAUSE |
-                                PlaybackStateCompat.ACTION_PLAY_PAUSE);
-
-        mMediaSession.setPlaybackState(mStateBuilder.build());
-
-
-        // Handle callbacks from a media controller
-        mMediaSession.setCallback(new StepCallback());
-
-        // Start the Media Session since the activity is active
-        mMediaSession.setActive(true);
-    }
+//   // private void initializeMediaSession() {
+//
+//        // Create a new MediaSession
+//        mMediaSession = new MediaSessionCompat(this, StepActivity.class.getSimpleName());
+//
+//        // Enable callbacks from MediaButtons and TransportControls
+//        mMediaSession.setFlags(
+//                MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS |
+//                        MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+//
+//        // Do not let MediaButtons restart the player when the app is not visible
+//        mMediaSession.setMediaButtonReceiver(null);
+//
+//        mStateBuilder = new PlaybackStateCompat.Builder()
+//                .setActions(
+//                        PlaybackStateCompat.ACTION_PLAY |
+//                                PlaybackStateCompat.ACTION_PAUSE |
+//                                PlaybackStateCompat.ACTION_PLAY_PAUSE);
+//
+//        mMediaSession.setPlaybackState(mStateBuilder.build());
+//
+//
+//        // Handle callbacks from a media controller
+//        mMediaSession.setCallback(new StepCallback());
+//
+//        // Start the Media Session since the activity is active
+//        mMediaSession.setActive(true);
+//    }
 
     private void initializePlayer(Uri mediaUri) {
 
