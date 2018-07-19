@@ -30,16 +30,6 @@ public class RecipesMainFragment extends android.support.v4.app.Fragment impleme
 //
         main_rv=view.findViewById(R.id.rv_process);
 
-
-//
-////        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-////        MainActAdapter mainActAdapter=new MainActAdapter(this);
-////        main_rv.setAdapter(mainActAdapter);
-////        main_rv.setLayoutManager(linearLayoutManager);
-////        main_rv.setHasFixedSize(true);
-//
-//
-
         return view;
     }
 

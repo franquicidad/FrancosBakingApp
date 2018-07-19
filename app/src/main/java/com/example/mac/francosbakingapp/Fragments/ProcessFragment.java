@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     public static final String RECIPE_EXTRA = "recipe_extra";
     public static final String PROCESS_EXTRA = "process_extra";
     public static final String PROCESS_POSITION = "process_position";
+    private static final String DESCRIPTION_FRAGMENT="description_fragment";
+
     RecyclerView processRecyclerview;
     Context mContext;
     boolean mIsTablet;
@@ -80,19 +83,35 @@ public class ProcessFragment extends Fragment implements ProcessAdapter.onProces
     public void onProcessClicked(List<Process> processes, int position) {
 
 
-        Intent stepActivityInt = new Intent(getContext(), StepsActivity.class);
 
         ArrayList<Process> processes1 = new ArrayList<>(mArrayListProcess);
 
-        stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA, processes1);
-        stepActivityInt.putExtra(PROCESS_POSITION, position);
-        startActivity(stepActivityInt);
+
+        Log.e(TAG,"THE VARIABLE IS MISTABLET IS :-------------->"+mIsTablet);
 
         if (mIsTablet) {
-            Bundle pos = new Bundle();
-            pos.putInt(PROCESS_POSITION, position);
-            DescriptionFragment descriptionFragment = new DescriptionFragment();
-            descriptionFragment.setArguments(pos);
+
+            Bundle stepsBundle=new Bundle();
+            stepsBundle.putParcelableArrayList("ArrayList",processes1);
+            stepsBundle.putInt("process_position",position);
+
+            DescriptionFragment descriptionFragment=new DescriptionFragment();
+            descriptionFragment.setArguments(stepsBundle);
+
+
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.description_container,descriptionFragment,DESCRIPTION_FRAGMENT).commit();
+
+
+
+        }else{
+
+            Intent stepActivityInt = new Intent(getContext(), StepsActivity.class);
+
+            stepActivityInt.putParcelableArrayListExtra(PROCESS_EXTRA, processes1);
+            stepActivityInt.putExtra(PROCESS_POSITION, position);
+            startActivity(stepActivityInt);
+
 
         }
 

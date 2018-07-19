@@ -54,19 +54,21 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.ProcessA
 
     public class ProcessAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView process_tv, process_recipe_step;
+        TextView process_tv, process_recipe_step,txt_exo_player_null;
 
         public ProcessAdapterViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             process_tv=itemView.findViewById(R.id.process_textView);
             process_recipe_step=itemView.findViewById(R.id.process_number);
+            txt_exo_player_null=itemView.findViewById(R.id.exoplayer_null);
 
         }
 
         @Override
         public void onClick(View view) {
             mProcessClickHandler.onProcessClicked(mProcessList ,getAdapterPosition());
+
         }
     }
 

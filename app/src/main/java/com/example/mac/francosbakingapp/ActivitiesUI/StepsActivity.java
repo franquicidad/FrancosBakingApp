@@ -22,12 +22,8 @@ public class StepsActivity extends AppCompatActivity {
     Process mProcess;
 
     ArrayList<Process> mArraylistProcess;
-    TextView stepName,stepDescription;
-    Button next,previous;
-    private int idCount;
     private int processPosition;
-    private SimpleExoPlayer mExoPlayer;
-    private SimpleExoPlayerView mPlayerView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,12 +43,6 @@ public class StepsActivity extends AppCompatActivity {
         DescriptionFragment descriptionFragment=new DescriptionFragment();
         descriptionFragment.setArguments(stepsBundle);
 
-
-
-        stepName=findViewById(R.id.step_name);
-        stepDescription=findViewById(R.id.step_description);
-        next=findViewById(R.id.next_button);
-        previous=findViewById(R.id.previous_button);
 
 
         getSupportFragmentManager().beginTransaction()

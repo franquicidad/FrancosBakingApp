@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
             mHasTwoPane = true;
             loadRecipe();
 
+
         } else {
             mHasTwoPane = false;
             loadRecipe();
@@ -144,11 +145,7 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
                 break;
         }
     }
-    private void eventAndLoadDataOnStepsList(Recipe recipe,int position){
 
-        loadExoAndDescription(recipe);
-
-    }
     private void  loadIngredientFragment(Recipe recipe) {
         Bundle ingredientBundle=new Bundle();
         ingredientBundle.putParcelable("ingredientBundle", recipe);
@@ -172,17 +169,6 @@ public class MainActivity extends AppCompatActivity implements MainActAdapter.Re
 
     }
 
-    private void loadExoAndDescription(Recipe recipe){
 
-        DescriptionFragment descriptionFragment=new DescriptionFragment();
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.tablet_fragment_exo_description,descriptionFragment,EXO_DESCRIP_FRAG);
-
-    }
-
-    public void onProcessClicked(Process process,int position){
-
-    }
 }
 
