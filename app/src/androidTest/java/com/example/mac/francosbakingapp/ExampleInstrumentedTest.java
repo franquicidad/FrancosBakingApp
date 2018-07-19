@@ -19,6 +19,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
 
 /**
@@ -29,20 +30,6 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
-    @Rule
-    public ActivityTestRule<StepsActivity> mainActivityActivityTestRule=new ActivityTestRule<>(StepsActivity.class);
 
-    @Test
-    public void checkIfButtonInsertsDescriptionRecipe(){
-        onView(withId(R.id.next_button)).perform(click());
-        onView(withId(R.id.description_textview)).check(matches(isDisplayed()));
 
-    }
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.example.mac.francosbakingapp", appContext.getPackageName());
-    }
 }
