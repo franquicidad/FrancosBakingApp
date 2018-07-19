@@ -52,7 +52,7 @@ public class DescriptionFragment extends Fragment {
     private SimpleExoPlayerView mExoPlayerView;
     private PlayerView playerView;
     private boolean playWhenReady;
-    private static MediaSessionCompat mMediaSession;
+    private static MediaSessionCompat mMediaSession;// problems
 
     private int startWindow;
     private long playbackPosition;
