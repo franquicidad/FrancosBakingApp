@@ -57,7 +57,29 @@ public class DescriptionFragment extends Fragment {
     private int startWindow;
     private long playbackPosition;
     private SimpleExoPlayer mExoPlayer;
+    int exoPosition;
     private ArrayList<Process> mProcessList;
+    private Long mPosition;
+    private static final String PLAYER_POSITION= "player_position";
+
+    private Long positionExoPlayer;
+
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        mPosition= mExoPlayer.getCurrentPosition();
+//        outState.putLong(PLAYER_POSITION,mPosition);
+//
+//    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+////        positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
+////
+////        mExoPlayer.seekTo(positionExoPlayer);
+//    }
 
     @Nullable
     @Override
@@ -81,7 +103,10 @@ public class DescriptionFragment extends Fragment {
         final String Description = mProcess.getDescription();
         final String nameDes = mProcess.getShortDescription();
 
+
+
         if(!TextUtils.isEmpty(mProcess.getVideoURL())) {
+
 
             initializePlayer(Uri.parse(mProcess.getVideoURL()));
             Log.e(TAG,"Error tagg------->:"+mProcess.getVideoURL());
@@ -117,6 +142,7 @@ public class DescriptionFragment extends Fragment {
 
                     if(!TextUtils.isEmpty(mProcess.getVideoURL())) {
 
+                        releasePlayer();
                         initializePlayer(Uri.parse(mProcess.getVideoURL()));
                         videoIsNull.setVisibility(View.GONE);
                         mExoPlayerView.setVisibility(View.VISIBLE);
@@ -153,16 +179,21 @@ public class DescriptionFragment extends Fragment {
                     nameStep.setText(shortDesAdd);
                     descriptionTextview.setText(Description);
                     if(!TextUtils.isEmpty(mProcess.getVideoURL())) {
-                        initializePlayer(Uri.parse(mProcess.getVideoURL()));
-                        videoIsNull.setVisibility(View.GONE);
-                        mExoPlayerView.setVisibility(View.VISIBLE);
+                        if(mExoPlayer!=null){
+
+                            releasePlayer();
+                            initializePlayer(Uri.parse(mProcess.getVideoURL()));
+                            videoIsNull.setVisibility(View.GONE);
+                            mExoPlayerView.setVisibility(View.VISIBLE);
+
+                        }
+
 
                     }
                     else {
                         videoIsNull.setVisibility(View.VISIBLE);
                         mExoPlayerView.setVisibility(View.GONE);
                     }
-
 
                 }
 
@@ -228,15 +259,24 @@ public class DescriptionFragment extends Fragment {
             mExoPlayer.release();
             mExoPlayer = null;
     }
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        releasePlayer();
+//    }
+
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        releasePlayer();
+    public void onStop() {
+        super.onStop();
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
+
+        releasePlayer();
 
 
     }
@@ -244,10 +284,16 @@ public class DescriptionFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-            releasePlayer();
+           initializePlayer(Uri.parse(mProcess.getVideoURL()));
 
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        initializePlayer(Uri.parse(mProcess.getVideoURL()));
+
+    }
 }

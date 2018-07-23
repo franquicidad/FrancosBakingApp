@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivitiesUI.MainActivity">
+        <activity android:name=".ActivitiesUI.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +28,7 @@
         <activity
             android:name=".ActivitiesUI.StepsActivity"
             android:label="Recipe Step Preparation"
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".ActivitiesUI.IngredientActivity">
 
         </activity>
