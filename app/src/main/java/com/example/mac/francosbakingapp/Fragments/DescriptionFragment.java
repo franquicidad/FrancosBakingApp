@@ -60,26 +60,17 @@ public class DescriptionFragment extends Fragment {
     int exoPosition;
     private ArrayList<Process> mProcessList;
     private Long mPosition;
+    private int windowIndexExoPlayer;
+    private boolean isPlayWhenReadyExoPlayer;
     private static final String PLAYER_POSITION= "player_position";
+    private static final String PLAYER_CURRENT_WINDOW="player_current_window";
+    private static final String PLAYER_PLAY_STATE="player_play_state";
 
     private Long positionExoPlayer;
 
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        mPosition= mExoPlayer.getCurrentPosition();
-//        outState.putLong(PLAYER_POSITION,mPosition);
-//
-//    }
-//
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//
-////        positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
-////
-////        mExoPlayer.seekTo(positionExoPlayer);
-//    }
+
+
+
 
     @Nullable
     @Override
@@ -255,10 +246,44 @@ public class DescriptionFragment extends Fragment {
     }
 
     private void releasePlayer() {
+
+        if(mExoPlayer!=null){
+            mPosition =mExoPlayer.getCurrentPosition();
+            windowIndexExoPlayer=mExoPlayer.getCurrentWindowIndex();
+            isPlayWhenReadyExoPlayer=mExoPlayer.getPlayWhenReady();
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
+        }
+
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        positionExoPlayer=mExoPlayer.getCurrentPosition();
+
+        outState.putLong(PLAYER_POSITION,positionExoPlayer);
+        outState.putInt(PLAYER_CURRENT_WINDOW,windowIndexExoPlayer);
+        outState.putBoolean(PLAYER_PLAY_STATE,isPlayWhenReadyExoPlayer);
+
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        positionExoPlayer=mExoPlayer.getCurrentPosition();
+
+
+        positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
+        windowIndexExoPlayer=savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
+        isPlayWhenReadyExoPlayer=savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
+
+        mExoPlayer.seekTo(positionExoPlayer);
+    }
+
+
 //    @Override
 //    public void onDestroy() {
 //        super.onDestroy();
