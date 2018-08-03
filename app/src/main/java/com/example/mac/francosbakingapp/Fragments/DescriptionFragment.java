@@ -274,6 +274,8 @@ public class DescriptionFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //HELP I NEED A GOOOOOOD EXPLANATION ON HOW TO SOLVE THIS INSTANCE STATE PROBLEM... CHECK OTHER REVIEWS!
+
 
             positionExoPlayer = mExoPlayer.getCurrentPosition();
 
