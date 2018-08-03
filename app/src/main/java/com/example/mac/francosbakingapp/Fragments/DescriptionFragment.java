@@ -281,6 +281,7 @@ public class DescriptionFragment extends Fragment {
 //        isPlayWhenReadyExoPlayer=savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
 //
 //        mExoPlayer.seekTo(positionExoPlayer);
+        //HELPPPP!!!
     }
 
 
