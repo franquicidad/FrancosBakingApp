@@ -276,11 +276,11 @@ public class DescriptionFragment extends Fragment {
         positionExoPlayer=mExoPlayer.getCurrentPosition();
 
 
-        positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
-        windowIndexExoPlayer=savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
-        isPlayWhenReadyExoPlayer=savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
-
-        mExoPlayer.seekTo(positionExoPlayer);
+//        //positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
+//        windowIndexExoPlayer=savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
+//        isPlayWhenReadyExoPlayer=savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
+//
+//        mExoPlayer.seekTo(positionExoPlayer);
     }
 
 
