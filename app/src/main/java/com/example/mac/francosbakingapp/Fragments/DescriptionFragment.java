@@ -258,35 +258,46 @@ public class DescriptionFragment extends Fragment {
 
     }
 
-    @Override
+    /**
+     *
+     * @param outState
+     *
+     *  @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        positionExoPlayer=mExoPlayer.getCurrentPosition();
+    super.onSaveInstanceState(outState);
+    positionExoPlayer=mExoPlayer.getCurrentPosition();
 
-        outState.putLong(PLAYER_POSITION,positionExoPlayer);
-        outState.putInt(PLAYER_CURRENT_WINDOW,windowIndexExoPlayer);
-        outState.putBoolean(PLAYER_PLAY_STATE,isPlayWhenReadyExoPlayer);
-
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        //HELP I NEED A GOOOOOOD EXPLANATION ON HOW TO SOLVE THIS INSTANCE STATE PROBLEM... CHECK OTHER REVIEWS!
+    outState.putLong(PLAYER_POSITION,positionExoPlayer);
+    outState.putInt(PLAYER_CURRENT_WINDOW,windowIndexExoPlayer);
+    outState.putBoolean(PLAYER_PLAY_STATE,isPlayWhenReadyExoPlayer);
 
 
-            positionExoPlayer = mExoPlayer.getCurrentPosition();
+     HELP MEEEEE SOLVE THISSSS
+     */
 
-        if(mExoPlayer!=null) {
-            positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
-            windowIndexExoPlayer = savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
-            isPlayWhenReadyExoPlayer = savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
 
-        }
+    /**
+     * PLEASE HELP ME HERE ALSO. I DONT HAVE A MENTOR TO HELP ME
+     */
 
-    }
+
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        //HELP I NEED A GOOOOOOD EXPLANATION ON HOW TO SOLVE THIS INSTANCE STATE PROBLEM... CHECK OTHER REVIEWS!
+//
+//
+//            positionExoPlayer = mExoPlayer.getCurrentPosition();
+//
+//        if(mExoPlayer!=null) {
+//            positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
+//            windowIndexExoPlayer = savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
+//            isPlayWhenReadyExoPlayer = savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
+//
+//        }
+//
+//    }
 
 
 //    @Override
