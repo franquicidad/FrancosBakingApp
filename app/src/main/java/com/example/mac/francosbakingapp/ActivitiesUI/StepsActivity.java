@@ -31,22 +31,23 @@ public class StepsActivity extends AppCompatActivity {
         setContentView(R.layout.onclick_steps);
 
 
+        if(savedInstanceState ==null) {
+            mArraylistProcess = getIntent().getExtras().getParcelableArrayList(ProcessFragment.PROCESS_EXTRA);
 
-        mArraylistProcess=getIntent().getExtras().getParcelableArrayList(ProcessFragment.PROCESS_EXTRA);
+            processPosition = getIntent().getExtras().getInt(ProcessFragment.PROCESS_POSITION);
 
-        processPosition=getIntent().getExtras().getInt(ProcessFragment.PROCESS_POSITION);
+            Bundle stepsBundle = new Bundle();
+            stepsBundle.putParcelableArrayList("ArrayList", mArraylistProcess);
+            stepsBundle.putInt("process_position", processPosition);
 
-        Bundle stepsBundle=new Bundle();
-        stepsBundle.putParcelableArrayList("ArrayList",mArraylistProcess);
-        stepsBundle.putInt("process_position",processPosition);
-
-        DescriptionFragment descriptionFragment=new DescriptionFragment();
-        descriptionFragment.setArguments(stepsBundle);
+            DescriptionFragment descriptionFragment = new DescriptionFragment();
+            descriptionFragment.setArguments(stepsBundle);
 
 
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.description_container, descriptionFragment, DESCRIPTION_FRAGMENT).commit();
+        }
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.description_container,descriptionFragment,DESCRIPTION_FRAGMENT).commit();
 
 
 

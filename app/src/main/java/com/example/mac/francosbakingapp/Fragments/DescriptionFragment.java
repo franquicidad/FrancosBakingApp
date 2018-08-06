@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,7 @@ public class DescriptionFragment extends Fragment {
     Process mProcess;
     TextView descriptionTextview, nameStep;
     Bundle positionBund;
+    ImageView imageView_thumb;
     TextView videoIsNull;
     int position;
     Button previousB, nextB;
@@ -84,6 +87,7 @@ public class DescriptionFragment extends Fragment {
         nameStep = view.findViewById(R.id.step_name);
         mExoPlayerView = view.findViewById(R.id.exoplayer_view);
         videoIsNull = view.findViewById(R.id.exoplayer_null);
+        imageView_thumb=view.findViewById(R.id.thumbnail_imageview);
 
 
         mProcessList = getArguments().getParcelableArrayList("ArrayList");
@@ -94,7 +98,21 @@ public class DescriptionFragment extends Fragment {
         final String Description = mProcess.getDescription();
         final String nameDes = mProcess.getShortDescription();
 
+        if (savedInstanceState != null) {
+            playbackPosition = savedInstanceState.getLong(PLAYER_POSITION);
+            windowIndexExoPlayer = savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
+            playWhenReady = savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
 
+        }
+
+
+        String thumbnail=mProcess.getThumbnailURL();
+        if(thumbnail.isEmpty()) {
+            imageView_thumb.setVisibility(View.GONE);
+
+        }else{
+            Picasso.with(getContext()).load(thumbnail).into(imageView_thumb);
+        }
 
         if(!TextUtils.isEmpty(mProcess.getVideoURL())) {
 
@@ -165,6 +183,7 @@ public class DescriptionFragment extends Fragment {
                 } else {
 
                     mProcess = mProcessList.get(position);
+                    releasePlayer();
                     String Description = mProcess.getDescription();
                     String shortDesAdd = mProcess.getShortDescription();
                     nameStep.setText(shortDesAdd);
@@ -194,34 +213,7 @@ public class DescriptionFragment extends Fragment {
         return view;
     }
 
-//   // private void initializeMediaSession() {
-//
-//        // Create a new MediaSession
-//        mMediaSession = new MediaSessionCompat(this, StepActivity.class.getSimpleName());
-//
-//        // Enable callbacks from MediaButtons and TransportControls
-//        mMediaSession.setFlags(
-//                MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS |
-//                        MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
-//
-//        // Do not let MediaButtons restart the player when the app is not visible
-//        mMediaSession.setMediaButtonReceiver(null);
-//
-//        mStateBuilder = new PlaybackStateCompat.Builder()
-//                .setActions(
-//                        PlaybackStateCompat.ACTION_PLAY |
-//                                PlaybackStateCompat.ACTION_PAUSE |
-//                                PlaybackStateCompat.ACTION_PLAY_PAUSE);
-//
-//        mMediaSession.setPlaybackState(mStateBuilder.build());
-//
-//
-//        // Handle callbacks from a media controller
-//        mMediaSession.setCallback(new StepCallback());
-//
-//        // Start the Media Session since the activity is active
-//        mMediaSession.setActive(true);
-//    }
+
 
     private void initializePlayer(Uri mediaUri) {
 
@@ -245,12 +237,10 @@ public class DescriptionFragment extends Fragment {
 
     }
 
-    private void releasePlayer() {
 
-        if(mExoPlayer!=null){
-            mPosition =mExoPlayer.getCurrentPosition();
-            windowIndexExoPlayer=mExoPlayer.getCurrentWindowIndex();
-            isPlayWhenReadyExoPlayer=mExoPlayer.getPlayWhenReady();
+    private void releasePlayer() {
+        saveState();
+        if (mExoPlayer != null) {
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
@@ -258,53 +248,30 @@ public class DescriptionFragment extends Fragment {
 
     }
 
+
+    private void saveState() {
+        if (mExoPlayer != null) {
+            positionExoPlayer = mExoPlayer.getCurrentPosition();
+            windowIndexExoPlayer = mExoPlayer.getCurrentWindowIndex();
+            playWhenReady = mExoPlayer.getPlayWhenReady();
+        }
+
+    }
+
     /**
-     *
      * @param outState
-     *
-     *  @Override
+     */
+    @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-    super.onSaveInstanceState(outState);
-    positionExoPlayer=mExoPlayer.getCurrentPosition();
+        super.onSaveInstanceState(outState);
+        saveState();
+        outState.putLong(PLAYER_POSITION, positionExoPlayer);
+        outState.putInt(PLAYER_CURRENT_WINDOW, windowIndexExoPlayer);
+        outState.putBoolean(PLAYER_PLAY_STATE, playWhenReady);
 
-    outState.putLong(PLAYER_POSITION,positionExoPlayer);
-    outState.putInt(PLAYER_CURRENT_WINDOW,windowIndexExoPlayer);
-    outState.putBoolean(PLAYER_PLAY_STATE,isPlayWhenReadyExoPlayer);
-
-
-     HELP MEEEEE SOLVE THISSSS
-     */
+    }
 
 
-    /**
-     * PLEASE HELP ME HERE ALSO. I DONT HAVE A MENTOR TO HELP ME
-     */
-
-
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//
-//        //HELP I NEED A GOOOOOOD EXPLANATION ON HOW TO SOLVE THIS INSTANCE STATE PROBLEM... CHECK OTHER REVIEWS!
-//
-//
-//            positionExoPlayer = mExoPlayer.getCurrentPosition();
-//
-//        if(mExoPlayer!=null) {
-//            positionExoPlayer=savedInstanceState.getLong(PLAYER_POSITION);
-//            windowIndexExoPlayer = savedInstanceState.getInt(PLAYER_CURRENT_WINDOW);
-//            isPlayWhenReadyExoPlayer = savedInstanceState.getBoolean(PLAYER_PLAY_STATE);
-//
-//        }
-//
-//    }
-
-
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        releasePlayer();
-//    }
 
 
     @Override

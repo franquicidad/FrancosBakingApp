@@ -21,6 +21,7 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
     private ArrayList<Integer> arrayListImages;
     private ArrayList<Recipe> mRecipeArrayListData;
     private RecipesAdapterOnClickHandler recipesAdapterOnClickHandler;
+    private Recipe recipe;
 
     public interface RecipesAdapterOnClickHandler {
         void onRecipeClick(Recipe recipe,int position);
@@ -51,6 +52,8 @@ public class MainActAdapter extends RecyclerView.Adapter<MainActAdapter.RecipesA
 
 
         arrayListImages=new ArrayList<>();
+
+
         arrayListImages.add(R.drawable.nutella);
         arrayListImages.add(R.drawable.brownie);
         arrayListImages.add(R.drawable.yellowcake);

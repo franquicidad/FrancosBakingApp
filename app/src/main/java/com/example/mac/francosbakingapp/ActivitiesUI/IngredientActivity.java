@@ -27,6 +27,7 @@ public class IngredientActivity extends AppCompatActivity {
 
     Recipe selectedRecipe;
     RecyclerView rv_ingred;
+    Process process;
 
 
     @Override
@@ -60,10 +61,6 @@ public class IngredientActivity extends AppCompatActivity {
 
         int id=detailRecipe.getId();
         String name=detailRecipe.getName();
-
-
-
-
 
         switch(id){
             case 1:

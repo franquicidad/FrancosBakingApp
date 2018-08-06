@@ -32,6 +32,12 @@
         android:text="Step name"
         android:layout_marginLeft="150dp"/>
 
+    <ImageView
+        android:id="@+id/thumbnail_imageview"
+        android:layout_width="83dp"
+        android:layout_height="47dp"
+        android:visibility="visible" />
+
     <TextView
         android:id="@+id/description_textview"
         android:layout_width="wrap_content"
